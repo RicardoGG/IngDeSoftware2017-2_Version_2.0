@@ -49,6 +49,8 @@ public class Controlador {
     @Autowired
     CalificarDAO calificar;
 
+     String user;
+    
     String edit_puesto;
 
     // Expresion regular que verifica el correo.
@@ -166,6 +168,10 @@ public class Controlador {
                 model.addAttribute("puestos", puestos_registrados);
                 return new ModelAndView("AdministradorIH", model);
             }
+            
+            //////
+            user = email;
+            /////
 
             String nombre = p.getNombre();
             String apellidoPat = p.getApPaterno();
@@ -382,6 +388,7 @@ public class Controlador {
     public ModelAndView calificarPuesto(ModelMap model,HttpServletRequest request){
         String nombre = request.getParameter("nombre");
         String calificacion = request.getParameter("calificacion");
+        String comentario = request.getParameter("comentario");
         
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();
@@ -395,23 +402,47 @@ public class Controlador {
         model.addAttribute("puestos", puestos_registrados);
         
         Puesto puest;
+        Calificar cali;
         
         if(nombre.equals("")){
             wrong = "El nombre del puesto no puede estar vacio favor de poner un nombre";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("error",model);
         } else{
-            int c = Integer.parseInt(calificacion);
-            puest = puesto.verificaPuesto(nombre);
-            int n = puest.getCalificacion();
-            int califFinal = (c+n)/2;
-            puest.setCalificacion(califFinal);
-            puesto.update(puest);
+            
+            ////
+            if(calificacion.equals("")){
+                wrong = "Debes agregar una calificación.";
+                model.addAttribute("mensaje",wrong);
+                return new ModelAndView("error",model);
+            }
+            else{
+                
+                int c = Integer.parseInt(calificacion);
+                puest = puesto.verificaPuesto(nombre);
+                int n = puest.getCalificacion();
+                int califFinal = (c+n)/2;
+                puest.setCalificacion(califFinal);
+            
+                Persona p = persona.getPersona_correo(user);
+                cali = new Calificar(p, puest, comentario);
+                calificar.insert(cali);
+                
+                puesto.update(puest);
+                
+            }
+            ////
         }
                    
         return new ModelAndView("perfil",model);
     }
     
+    @RequestMapping(value="/eliminarComenatario", method = RequestMethod.POST)
+    public ModelAndView eliminarComentario(ModelMap model,HttpServletRequest request){
+        String wrong = "Error al cargar la información.";
+        model.addAttribute("mensaje",wrong);
+        return new ModelAndView("error",model);
+    }
     
     /**
      * Funcion que regresa la informacion de los puestos con un usuario registrado

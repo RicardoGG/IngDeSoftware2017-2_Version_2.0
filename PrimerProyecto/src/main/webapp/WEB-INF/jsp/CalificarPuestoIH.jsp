@@ -16,6 +16,11 @@
         <form method="POST" action="/PrimerProyecto/calificarPuesto2">
             Nombre: <br> <input id="name" name="nombre" type="text" placeholder="Nombre"/><br>
             Calificacion: <br> <input id="calificacion" name="calificacion" type="text" placeholder="calificacion" /><br>
+            <br>
+            <br>
+            Comentario: <br> <input id="comentario" name="comentario" type="text" placeholder="Escribe un comentario"/>
+            <br>
+            <br>
             <button>Aceptar</button>
         </form>
     </body>
