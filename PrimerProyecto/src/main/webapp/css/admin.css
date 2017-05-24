@@ -1,4 +1,4 @@
-/*
+    /*
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
@@ -106,4 +106,30 @@ button{
     left: 25%;
     border: 5px solid #F4F4F5;
     border-radius: 20px;
+}
+
+
+#form_create_1{
+    position: absolute;
+    top: 15%;
+    margin-left: 10%;
+}
+
+#form_create_2{
+    position: absolute;
+    margin-left: 10%;
+    top: 30%;
+}
+
+#button_create_f{
+    position: absolute;
+    margin-left: 10%;
+    top: 50%;
+}
+
+.map{
+    position: absolute;
+    left:35%;
+    width:65%;
+    height:100%;
 }
