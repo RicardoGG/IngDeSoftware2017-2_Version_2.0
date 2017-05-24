@@ -31,6 +31,10 @@
                     <B>Nombre: </B>${puesto.idNombre}<br>
                     <B>Ubicacion: </B>${puesto.ubicacion}<br>
                     <B>Calificacion:</B>${puesto.calificacion}<br>
+                    <form method ="POST" action="/PrimerProyecto/verComentarios">
+                        <button>Ver Comentarios</button>
+                        <br>
+                    </form>
                     <br>
                 </c:forEach>
             </h2>

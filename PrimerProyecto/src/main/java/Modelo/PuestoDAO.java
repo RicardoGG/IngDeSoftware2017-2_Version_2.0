@@ -1,4 +1,4 @@
-package Modelo;
+ package Modelo;
 
 import Mapeo.Puesto;
 import java.util.List;

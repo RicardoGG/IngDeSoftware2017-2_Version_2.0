@@ -12,6 +12,7 @@ import Modelo.UsuarioDAO;
 import Modelo.VenderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -454,6 +455,11 @@ public class Controlador {
         
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();
+        //List<List <String>> comentarios = new ArrayList<>();
+        
+        //for(Puesto p: puestos_registrados){
+        //    comentarios.add(calificar.list_comentarios(p.getIdNombre()));
+        //}
         
         if(puestos_registrados == null){
             wrong = "Error al cargar la información.";
@@ -462,6 +468,7 @@ public class Controlador {
         }
         
         model.addAttribute("puestos", puestos_registrados);
+        //model.addAttribute("comen", comentarios);
         
         return new ModelAndView("verInformacionPuestoRegistrados",model);
     }
@@ -498,5 +505,22 @@ public class Controlador {
         
         
         return new ModelAndView("AdministradorIH", model);
+    }
+    
+    @RequestMapping(value = "/verComentarios", method = RequestMethod.POST)
+    public ModelAndView verComentarios(ModelMap model, HttpServletRequest request){
+        String nombre = request.getParameter("puesto.idNombre");
+        String wrong = "";
+        List<String> comentarios = calificar.list_comentarios(nombre);
+        
+        if(comentarios == null){
+            wrong = "Error al cargar la información.";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("error",model);
+        }
+        
+        model.addAttribute("comentarios", comentarios);
+        
+        return new ModelAndView("verComentario",model);
     }
 }
