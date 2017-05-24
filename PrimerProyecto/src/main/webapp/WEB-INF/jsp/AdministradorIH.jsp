@@ -44,6 +44,9 @@
                 <form method ="POST" action="/PrimerProyecto/cerrarSesion">
                     <button> Cerrar Sesión</button>
                 </form>
+                <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
+                    <button> Eliminar Usuario </button>
+                </form>
         </div>     
         <div class="content">
             <p class="welcome">¡Bienvenido!</p>
