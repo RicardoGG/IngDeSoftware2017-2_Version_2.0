@@ -1,6 +1,7 @@
 package Modelo;
 
 import Mapeo.Usuario;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -134,6 +135,58 @@ public class UsuarioDAO {
            session.close();
         }
         return admin;
+    }
+    
+    public List<Usuario> list_usuarios(){
+        List<Usuario> usuarios = null;
+        
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try{
+            
+            tx = session.beginTransaction();
+            String hql = "from Puesto";
+            Query query = session.createQuery(hql);
+            usuarios = (List<Usuario>)query.list();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        
+        return usuarios;
+    }
+    
+    public Usuario verificaUsuario(String correo){
+        Usuario puesto = null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try{
+            
+            tx = session.beginTransaction();
+            String hql = "from Puesto where idNombre = :nombrePuesto";
+            Query query = session.createQuery(hql);
+            query.setParameter("nombrePuesto", correo);
+            puesto = (Usuario)query.uniqueResult();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        
+        return puesto;
     }
     
 }

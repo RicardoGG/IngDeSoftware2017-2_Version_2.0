@@ -523,4 +523,33 @@ public class Controlador {
         
         return new ModelAndView("verComentario",model);
     }
+    
+    @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
+    public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) {
+        String correo = request.getParameter("usuario");
+
+        Usuario us = usuario.verificaUsuario(correo);
+        Persona p = persona.usuario_registrado(correo);
+        String wrong = "";
+
+        if (us == null) {
+            wrong = "El puesto no esta en la base de datos, favor de verificar el nombre";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        } else {
+            if(p == null){
+                usuario.delete(us);
+            }else{
+                persona.delete(p);
+                usuario.delete(us);
+            }
+        }
+        return new ModelAndView("AdministradorIH", model);
+
+    }
+    
+     @RequestMapping(value = "/Usuarios", method = RequestMethod.POST)
+    public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
+         return new ModelAndView("eliminarUsuarioAdministradorIH", model);
+    }
 }
