@@ -20,11 +20,11 @@
             <div class="sidemenu">
                     <img class="logo" src="css/logo.png">
 
-                    <form method="submit" action="/PrimerProyecto/CrearPuestoIH">
+                    <form method="submit" action="/PrimerProyecto/crearPuesto">
                         <button>Crear Puesto</button>
                     </form>
 
-                    <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
+                    <form method="submit" action="/PrimerProyecto/leerPuesto">
                         <button>Ver Puestos</button>
                     </form>
 

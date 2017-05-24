@@ -98,7 +98,7 @@ public class Controlador {
      */
     @RequestMapping(value = "/crearPuesto", method = RequestMethod.GET)
     public ModelAndView creaPuest(ModelMap model, HttpServletRequest request) {
-        return new ModelAndView("crearPuesto", model);
+        return new ModelAndView("CrearPuestoIH", model);
     }
 
     /**
@@ -117,7 +117,7 @@ public class Controlador {
 
         model.addAttribute("puestos", puestos_registrados);
 
-        return new ModelAndView("LeerPuesto", model);
+        return new ModelAndView("LeerPuestoIH", model);
     }
 
     /**
@@ -133,7 +133,7 @@ public class Controlador {
             return new ModelAndView("error", model);
         }
         model.addAttribute("puestos", puest);
-        return new ModelAndView("eliminarPuesto", model);
+        return new ModelAndView("EliminarPuestoIH", model);
     }
 
     /*
