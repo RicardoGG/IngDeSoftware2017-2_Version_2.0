@@ -164,7 +164,7 @@ public class UsuarioDAO {
     }
     
     public Usuario verificaUsuario(String correo){
-        Usuario puesto = null;
+        Usuario usuario = null;
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         
@@ -174,7 +174,7 @@ public class UsuarioDAO {
             String hql = "from Puesto where idNombre = :nombrePuesto";
             Query query = session.createQuery(hql);
             query.setParameter("nombrePuesto", correo);
-            puesto = (Usuario)query.uniqueResult();
+            usuario = (Usuario)query.uniqueResult();
             tx.commit();
             
         } catch (Exception e) {
@@ -186,7 +186,7 @@ public class UsuarioDAO {
             session.close();
         }
         
-        return puesto;
+        return usuario;
     }
     
 }
