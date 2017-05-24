@@ -548,6 +548,7 @@ public class Controlador {
 
     }
     
+
      @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
     public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
          return new ModelAndView("eliminarUsuarioAdministradorIH", model);
