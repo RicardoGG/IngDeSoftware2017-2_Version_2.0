@@ -15,7 +15,7 @@
         <c:forEach var="usuario" items="${usuarios}">
                   <B >Correo: </B>${usuario.correo_us}<br>
         </c:forEach>
-        <form method="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
+        <form method="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">
                     <p class="title_page">Correo del usuario a eliminar</p>
                     <input class="login_input1" id="nombre2" name ="usuario" type="text" placeholder="Correo_us"><br>
                     <button>Aceptar</button>

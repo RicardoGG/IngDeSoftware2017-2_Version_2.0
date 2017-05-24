@@ -524,7 +524,7 @@ public class Controlador {
         return new ModelAndView("verComentario",model);
     }
     
-    @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
+    @RequestMapping(value = "/eliminarUsuarioAdministrador1IH", method = RequestMethod.POST)
     public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) {
         String correo = request.getParameter("usuario");
 
@@ -548,7 +548,7 @@ public class Controlador {
 
     }
     
-     @RequestMapping(value = "/Usuarios", method = RequestMethod.POST)
+     @RequestMapping(value = "/eliminarUsuariosAdministradorIH", method = RequestMethod.POST)
     public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
          return new ModelAndView("eliminarUsuarioAdministradorIH", model);
     }
