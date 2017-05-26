@@ -23,11 +23,11 @@
         <div class="sidemenu">
                 <img class="logo" src="css/logo.png">
 
-                <form method="submit" action="/PrimerProyecto/crearPuesto">
+                <form method="submit" action="/PrimerProyecto/CrearPuestoIH">
                     <button>Crear Puesto</button>
                 </form>
 
-                <form method="submit" action="/PrimerProyecto/leerPuesto">
+                <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
                     <button>Ver Puestos</button>
                 </form>
 
@@ -35,7 +35,7 @@
                     <button>Modificar Puesto</button>
                 </form>
                 
-                <form method="POST" action="/PrimerProyecto/elimPuest">
+                <form method="POST" action="/PrimerProyecto/EliminarPuestoIH">
                     <button>Eliminar Puesto</button>
                 </form>
 

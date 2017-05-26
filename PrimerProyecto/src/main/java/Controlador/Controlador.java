@@ -57,8 +57,8 @@ public class Controlador {
      * Carga la pagina de inicio.
      */
     @RequestMapping(value = "/")
-    public String inicio() {
-        return "inicio";
+    public String PantallaDeInicioIH() {
+        return "PantallaDeInicioIH";
     }
 
     /*
@@ -73,60 +73,60 @@ public class Controlador {
         if (puestos_registrados == null) {
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         }
 
         model.addAttribute("puestos", puestos_registrados);
 
-        return new ModelAndView("verInformacionPuesto", model);
+        return new ModelAndView("VerInformacionPuestoIH", model);
     }
 
     /*
      * Cambia de la vista de inicio a el formulario.
      */
-    @RequestMapping(value = "/registrarse", method = RequestMethod.GET)
+    @RequestMapping(value = "/RegistrarseIH", method = RequestMethod.GET)
     public ModelAndView registrarse(ModelMap model, HttpServletRequest request) {
-        return new ModelAndView("registrarse", model);
+        return new ModelAndView("RegistrarseIH", model);
     }
 
     /**
      * Cambia de la vista al formulario de cracion de puestos.
      */
-    @RequestMapping(value = "/crearPuesto", method = RequestMethod.GET)
+    @RequestMapping(value = "/CrearPuestoIH", method = RequestMethod.GET)
     public ModelAndView creaPuest(ModelMap model, HttpServletRequest request) {
-        return new ModelAndView("crearPuesto", model);
+        return new ModelAndView("CrearPuestoIH", model);
     }
 
     /**
      * Cambia de la vista a la lista de puestos en la base de datos.
      */
-    @RequestMapping(value = "/leerPuesto", method = RequestMethod.GET)
-    public ModelAndView leerPuesto(ModelMap model, HttpServletRequest request) {
+    @RequestMapping(value = "/LeerPuestoIH", method = RequestMethod.GET)
+    public ModelAndView LeerPuestoIH(ModelMap model, HttpServletRequest request) {
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();
 
         if (puestos_registrados == null) {
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         }
 
         model.addAttribute("puestos", puestos_registrados);
 
-        return new ModelAndView("LeerPuesto", model);
+        return new ModelAndView("LeerPuestoIH", model);
     }
 
     /**
      * Cambia de la vista al formulario de eliminacion de puestos.
      */
-    @RequestMapping(value = "/elimPuest", method = RequestMethod.POST)
+    @RequestMapping(value = "/EliminarPuestoIH", method = RequestMethod.POST)
     public ModelAndView elimPuest(ModelMap model, HttpServletRequest request) {
         List<Puesto> puest = puesto.list_puestos();
         String wrong = "";
         if (puest == null) {
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         }
         model.addAttribute("puestos", puest);
         return new ModelAndView("eliminarPuesto", model);
@@ -144,13 +144,13 @@ public class Controlador {
         if (u == null) {
             wrong = "usuario no valido";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         }
         Persona p = persona.getPersona(u.getCorreo_us(), pas);
         if (p == null) {
             wrong = "correo invalido, favor de verificarlo";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         } else if (pas.equals(p.getContrasenia())) {
 
             if (usuario.es_Admin(email).equals("1")) {
@@ -159,7 +159,7 @@ public class Controlador {
                 if (puestos_registrados == null) {
                     wrong = "Error al cargar la información.";
                     model.addAttribute("mensaje", wrong);
-                    return new ModelAndView("error", model);
+                    return new ModelAndView("ErrorIH", model);
                 }
 
                 model.addAttribute("puestos", puestos_registrados);
@@ -178,9 +178,9 @@ public class Controlador {
         } else {
             wrong = "La contraseña es incorrecta, favor de verificarla";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         }
-        return new ModelAndView("perfil", model);
+        return new ModelAndView("PerfilIH", model);
     }
 
     /**
@@ -198,7 +198,7 @@ public class Controlador {
         HttpSession sesion = request.getSession(true);
         //Invalidamos la sesion y desvinculamos los objetos asociados a ella
         sesion.invalidate();
-        return new ModelAndView("inicio", model);
+        return new ModelAndView("PantallaDeInicioIH", model);
     }
 
     /*
@@ -230,13 +230,13 @@ public class Controlador {
         if (valida_email(correo) == false) {
             wrong = "Correo no valido. Debes usar un correo ciencias.";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         } else {
             p = persona.usuario_registrado(correo);
             if (p != null) {
                 wrong = "Usuario ya registrado.";
                 model.addAttribute("mensaje", wrong);
-                return new ModelAndView("error", model);
+                return new ModelAndView("ErrorIH", model);
             } else {
                 p = new Persona(nombre, apPaterno, apMaterno, correo, pass);
                 u = new Usuario(correo, "0");
@@ -244,7 +244,7 @@ public class Controlador {
                 usuario.insert(u);
             }
         }
-        return new ModelAndView("inicio", model);
+        return new ModelAndView("PantallaDeInicioIH", model);
     }
 
     /**
@@ -261,17 +261,17 @@ public class Controlador {
         if (nombre.equals("")) {
             wrong = "El nombre del puesto no puede estar vacio favor de poner un nombre";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         } else if (ubicacion.equals("")) {
             wrong = "La ubicacion no puede estar vacia, favor de poner un nombre";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         } else {
             puest = puesto.verificaPuesto(nombre);
             if (puest != null) {
                 wrong = "El puesto ya existe";
                 model.addAttribute("mensaje", wrong);
-                return new ModelAndView("error", model);
+                return new ModelAndView("ErrorIH", model);
             } else {
                 puest = new Puesto(nombre, ubicacion, 0);
                 puesto.insert(puest);
@@ -285,7 +285,7 @@ public class Controlador {
      * Metodo para eliminar un puesto de la base de datos (para el
      * Administrador)
      */
-    @RequestMapping(value = "/eliminarPuesto", method = RequestMethod.POST)
+    @RequestMapping(value = "/EliminarPuestoIH", method = RequestMethod.POST)
     public ModelAndView eliminarPuesto(ModelMap model, HttpServletRequest request) {
         String nombre = request.getParameter("puesto");
 
@@ -296,7 +296,7 @@ public class Controlador {
         if (puest == null) {
             wrong = "El puesto no esta en la base de datos, favor de verificar el nombre";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         } else {
             if(v.isEmpty()){
                 puesto.delete(puest);
@@ -329,7 +329,7 @@ public class Controlador {
      * @param request
      * @return la vista del puesto a modificar.
      */
-    @RequestMapping(value = "/modificarPuesto", method = RequestMethod.GET)
+    @RequestMapping(value = "/modificarPuestoIH", method = RequestMethod.GET)
     public ModelAndView modificarPuesto(ModelMap model, HttpServletRequest request) {
         List<Puesto> puest = puesto.list_puestos();
         model.addAttribute("puestos", puest);
@@ -339,9 +339,9 @@ public class Controlador {
     /**
      * redirige a la calificacion de puesto
      */
-    @RequestMapping(value="/calificacionPuesto", method = RequestMethod.POST)
+    @RequestMapping(value="/CalificarPuestoIH", method = RequestMethod.POST)
     public ModelAndView calificarPuestoP(ModelMap model,HttpServletRequest request){
-        return new ModelAndView("calificarPuesto",model);
+        return new ModelAndView("CalificarPuestoIH",model);
     }
 
     /**
@@ -359,7 +359,7 @@ public class Controlador {
         if (p == null) {
             String wrong = "Puesto no encontrado";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error", model);
+            return new ModelAndView("ErrorIH", model);
         }
 
         String nombre = p.getIdNombre();
@@ -388,7 +388,7 @@ public class Controlador {
         if(puestos_registrados == null){
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje",wrong);
-            return new ModelAndView("error",model);
+            return new ModelAndView("ErrorIH",model);
         }
         
         model.addAttribute("puestos", puestos_registrados);
@@ -398,7 +398,7 @@ public class Controlador {
         if(nombre.equals("")){
             wrong = "El nombre del puesto no puede estar vacio favor de poner un nombre";
             model.addAttribute("mensaje",wrong);
-            return new ModelAndView("error",model);
+            return new ModelAndView("ErrorIH",model);
         } else{
             int c = Integer.parseInt(calificacion);
             puest = puesto.verificaPuesto(nombre);
@@ -408,7 +408,7 @@ public class Controlador {
             puesto.update(puest);
         }
                    
-        return new ModelAndView("perfil",model);
+        return new ModelAndView("PerfilIH",model);
     }
     
     
@@ -426,7 +426,7 @@ public class Controlador {
         if(puestos_registrados == null){
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje",wrong);
-            return new ModelAndView("error",model);
+            return new ModelAndView("ErrorIH",model);
         }
         
         model.addAttribute("puestos", puestos_registrados);
@@ -454,7 +454,7 @@ public class Controlador {
         if(p == null){
             wrong = "El puesto no se encuentra en la base de datos, favor de verificar el nombre";
             model.addAttribute("mensaje", wrong);
-            return new ModelAndView("error",model);
+            return new ModelAndView("ErrorIH",model);
         }else{
             if(nombre.equals("") != true){
                 puesto.update(p);

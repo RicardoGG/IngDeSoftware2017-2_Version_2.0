@@ -27,7 +27,7 @@
         <div class="box2"> 
             <div class="first_half" >
                <img class="image1" src="css/foto1.jpg"/> 
-               <form method="submit" style="z-index: 3; position: relative; width: 100%; height: 100%; display: block;"  action="/PrimerProyecto/registrarse"> 
+               <form method="submit" style="z-index: 3; position: relative; width: 100%; height: 100%; display: block;"  action="/PrimerProyecto/RegistrarseIH"> 
                     <button class="button_image">Registrarse</button>
                 </form>    
             </div>  
