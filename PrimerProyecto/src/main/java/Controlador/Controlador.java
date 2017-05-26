@@ -399,7 +399,7 @@ public class Controlador {
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("error",model);
         }
-        
+       
         model.addAttribute("puestos", puestos_registrados);
         
         Puesto puest;
@@ -438,13 +438,39 @@ public class Controlador {
         return new ModelAndView("perfil",model);
     }
     
-    @RequestMapping(value="/eliminarComenatario", method = RequestMethod.POST)
+    /**
+     *Funcion para eliminar comentarios
+     */
+    @RequestMapping(value="/eliminarComentario", method = RequestMethod.POST)
     public ModelAndView eliminarComentario(ModelMap model,HttpServletRequest request){
-        String wrong = "Error al cargar la información.";
-        model.addAttribute("mensaje",wrong);
-        return new ModelAndView("error",model);
+        String mail = request.getParameter("usuario");
+        String comenta = request.getParameter("comentario");
+        String pu = request.getParameter("puesto");
+        Puesto puest = puesto.verificaPuesto(pu);
+        Persona p = persona.usuario_registrado(mail);
+        Calificar c =  new Calificar(p,puest,comenta);
+                      
+        String wrong ;
+        if(puest == null){
+        wrong = "El puesto no esta en la base de datos, favor de verificar el nombre";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }else if(c!=null){
+            calificar.delete(c);
+        }else{
+            wrong = "Error al cargar";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("error",model);
+        }
+        
+        return new ModelAndView("AdministradorIH",model);
     }
     
+    /**Redireccion para eliminar comentarios**/
+    @RequestMapping(value="/eliminarComentarioAdmin", method = RequestMethod.POST)
+    public ModelAndView eliminarComentarioPant(ModelMap model,HttpServletRequest request){
+        return new ModelAndView("eliminarComentariosAdmin",model);
+    }
     /**
      * Funcion que regresa la informacion de los puestos con un usuario registrado
      * @param model
@@ -530,6 +556,7 @@ public class Controlador {
 
         Usuario us = usuario.verificaUsuario(correo);
         Persona p = persona.usuario_registrado(correo);
+        
         String wrong = "";
 
         if (us == null) {

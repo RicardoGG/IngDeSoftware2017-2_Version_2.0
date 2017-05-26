@@ -18,8 +18,8 @@
         <h1>Comentarios:</h1>
         <h2>
             <c:forEach var="comentario" items="${comentarios}">
-                ${comentario}<br>
-                <br>
+                <br>${calificar.comentario}
+                    <br>
             </c:forEach>
         </h2>
     </body>

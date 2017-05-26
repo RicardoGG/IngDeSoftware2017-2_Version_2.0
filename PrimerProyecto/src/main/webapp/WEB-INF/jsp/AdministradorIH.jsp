@@ -47,6 +47,9 @@
                 <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
                     <button> Eliminar Usuario </button>
                 </form>
+                <form method ="POST" action="/PrimerProyecto/eliminarComentarioAdmin">
+                    <button> Eliminar Comentario </button>
+                </form>
         </div>     
         <div class="content">
             <p class="welcome">¡Bienvenido!</p>
