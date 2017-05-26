@@ -293,7 +293,7 @@ public class Controlador {
      * Metodo para eliminar un puesto de la base de datos (para el
      * Administrador)
      */
-    @RequestMapping(value = "/EliminarPuestoIH", method = RequestMethod.POST)
+    @RequestMapping(value = "/eliminarPuesto", method = RequestMethod.POST)
     public ModelAndView eliminarPuesto(ModelMap model, HttpServletRequest request) {
         String nombre = request.getParameter("puesto");
 
@@ -337,11 +337,11 @@ public class Controlador {
      * @param request
      * @return la vista del puesto a modificar.
      */
-    @RequestMapping(value = "/modificarPuestoIH", method = RequestMethod.GET)
+    @RequestMapping(value = "/ModificarPuestoIH", method = RequestMethod.GET)
     public ModelAndView modificarPuesto(ModelMap model, HttpServletRequest request) {
         List<Puesto> puest = puesto.list_puestos();
         model.addAttribute("puestos", puest);
-        return new ModelAndView("modificarPuestoIH", model);
+        return new ModelAndView("ModificarPuestoIH", model);
     }
     
     /**
