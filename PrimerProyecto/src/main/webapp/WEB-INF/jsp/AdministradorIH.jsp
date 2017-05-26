@@ -33,16 +33,22 @@
                     <button>Ver Puestos</button>
                 </form>
 
-                <form method="submit" action="/PrimerProyecto/modificarPuestoIH">
+                <form method="submit" action="/PrimerProyecto/ModificarPuestoIH">
                     <button>Modificar Puesto</button>
                 </form>
-                
+
                 <form method="POST" action="/PrimerProyecto/EliminarPuestoIH">
                     <button>Eliminar Puesto</button>
                 </form>
 
                 <form method ="POST" action="/PrimerProyecto/cerrarSesion">
                     <button> Cerrar Sesión</button>
+                </form>
+                <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
+                    <button> Eliminar Usuario </button>
+                </form>
+                <form method ="POST" action="/PrimerProyecto/eliminarComentarioAdmin">
+                    <button> Eliminar Comentario </button>
                 </form>
         </div>     
         <div class="content">

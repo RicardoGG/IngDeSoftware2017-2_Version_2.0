@@ -1,6 +1,7 @@
 package Modelo;
 
 import Mapeo.Usuario;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,6 +10,7 @@ import org.hibernate.Transaction;
 /**
  *
  * @author diego
+ * @version 2.0
  */
 public class UsuarioDAO {
     // Atributo para iniciar nueva sesion
@@ -135,4 +137,56 @@ public class UsuarioDAO {
         return admin;
     }
     
+    public List<Usuario> list_usuarios(){
+        List<Usuario> usuarios = null;
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+
+        try{
+
+            tx = session.beginTransaction();
+            String hql = "from Usuario";
+            Query query = session.createQuery(hql);
+            usuarios = (List<Usuario>)query.list();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return usuarios;
+    }
+
+    public Usuario verificaUsuario(String correo){
+        Usuario usuario = null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+
+        try{
+
+            tx = session.beginTransaction();
+            String hql = "from Usuario where correo = :correoUsuario";
+            Query query = session.createQuery(hql);
+            query.setParameter("correoUsuario", correo);
+            usuario = (Usuario)query.uniqueResult();
+            tx.commit();
+
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+        return usuario;
+    }
+
 }

@@ -12,6 +12,7 @@ import org.hibernate.annotations.CascadeType;
 /**
  *
  * @author diego
+ * @version 2.0
  */
 @Entity
 @Table(name = "vender")

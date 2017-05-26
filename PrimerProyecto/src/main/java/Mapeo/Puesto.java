@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- *
+ * @version 2.0
  * @author diego
  */
 @Entity

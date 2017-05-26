@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 /**
  *
  * @author diego
+ * @version 2.0
  */
 public class AlimentosDAO {
     // Atributo para iniciar nueva sesion

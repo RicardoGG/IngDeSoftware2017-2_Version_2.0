@@ -1,4 +1,4 @@
-package Modelo;
+ package Modelo;
 
 import Mapeo.Puesto;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 /**
  *
  * @author diego
+ * @version 2.0
  */
 public class PuestoDAO {
     // Atributo para iniciar nueva sesion

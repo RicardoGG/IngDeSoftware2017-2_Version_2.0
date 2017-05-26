@@ -12,6 +12,7 @@ import Modelo.UsuarioDAO;
 import Modelo.VenderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 /**
  *
  * @author diego
+ * @version 2.0
  */
 @Controller
 public class Controlador {
@@ -47,6 +49,8 @@ public class Controlador {
     
     @Autowired
     CalificarDAO calificar;
+
+     String user;
 
     String edit_puesto;
 
@@ -129,7 +133,7 @@ public class Controlador {
             return new ModelAndView("ErrorIH", model);
         }
         model.addAttribute("puestos", puest);
-        return new ModelAndView("eliminarPuesto", model);
+        return new ModelAndView("EliminarPuestoIH", model);
     }
 
     /*
@@ -165,6 +169,10 @@ public class Controlador {
                 model.addAttribute("puestos", puestos_registrados);
                 return new ModelAndView("AdministradorIH", model);
             }
+
+            //////
+            user = email;
+            /////
 
             String nombre = p.getNombre();
             String apellidoPat = p.getApPaterno();
@@ -381,6 +389,7 @@ public class Controlador {
     public ModelAndView calificarPuesto(ModelMap model,HttpServletRequest request){
         String nombre = request.getParameter("nombre");
         String calificacion = request.getParameter("calificacion");
+        String comentario = request.getParameter("comentario");
         
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();
@@ -390,28 +399,78 @@ public class Controlador {
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
-        
+
         model.addAttribute("puestos", puestos_registrados);
-        
+
         Puesto puest;
+        Calificar cali;
         
         if(nombre.equals("")){
             wrong = "El nombre del puesto no puede estar vacio favor de poner un nombre";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         } else{
-            int c = Integer.parseInt(calificacion);
-            puest = puesto.verificaPuesto(nombre);
-            int n = puest.getCalificacion();
-            int califFinal = (c+n)/2;
-            puest.setCalificacion(califFinal);
-            puesto.update(puest);
+
+            ////
+            if(calificacion.equals("")){
+                wrong = "Debes agregar una calificación.";
+                model.addAttribute("mensaje",wrong);
+                return new ModelAndView("ErrorIH",model);
+            }
+            else{
+
+                int c = Integer.parseInt(calificacion);
+                puest = puesto.verificaPuesto(nombre);
+                int n = puest.getCalificacion();
+                int califFinal = (c+n)/2;
+                puest.setCalificacion(califFinal);
+
+                Persona p = persona.getPersona_correo(user);
+                cali = new Calificar(p, puest, comentario);
+                calificar.insert(cali);
+
+                puesto.update(puest);
+
+            }
+            ////
         }
-                   
+
         return new ModelAndView("PerfilIH",model);
     }
-    
-    
+
+    /**
+     *Funcion para eliminar comentarios
+     */
+    @RequestMapping(value="/eliminarComentario", method = RequestMethod.POST)
+    public ModelAndView eliminarComentario(ModelMap model,HttpServletRequest request){
+        String mail = request.getParameter("usuario");
+        String comenta = request.getParameter("comentario");
+        String pu = request.getParameter("puesto");
+        Puesto puest = puesto.verificaPuesto(pu);
+        Persona p = persona.usuario_registrado(mail);
+        Calificar c =  new Calificar(p,puest,comenta);
+
+        String wrong ;
+        if(puest == null){
+        wrong = "El puesto no esta en la base de datos, favor de verificar el nombre";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }else if(c!=null){
+            calificar.delete(c);
+        }else{
+            wrong = "Error al cargar";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("ErrorIH",model);
+        }
+
+        return new ModelAndView("AdministradorIH",model);
+    }
+
+    /**Redireccion para eliminar comentarios**/
+    @RequestMapping(value="/eliminarComentarioAdmin", method = RequestMethod.POST)
+    public ModelAndView eliminarComentarioPant(ModelMap model,HttpServletRequest request){
+        return new ModelAndView("eliminarComentariosAdmin",model);
+    }
     /**
      * Funcion que regresa la informacion de los puestos con un usuario registrado
      * @param model
@@ -422,13 +481,18 @@ public class Controlador {
         
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();
+        //List<List <String>> comentarios = new ArrayList<>();
+
+        //for(Puesto p: puestos_registrados){
+        //    comentarios.add(calificar.list_comentarios(p.getIdNombre()));
+        //}
         
         if(puestos_registrados == null){
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
-        
+
         model.addAttribute("puestos", puestos_registrados);
         
         return new ModelAndView("verInformacionPuestoRegistrados",model);
@@ -466,5 +530,53 @@ public class Controlador {
         
         
         return new ModelAndView("AdministradorIH", model);
+    }
+
+    @RequestMapping(value = "/verComentarios", method = RequestMethod.POST)
+    public ModelAndView verComentarios(ModelMap model, HttpServletRequest request){
+        String nombre = request.getParameter("puesto.idNombre");
+        String wrong = "";
+        List<String> comentarios = calificar.list_comentarios(nombre);
+
+        if(comentarios == null){
+            wrong = "Error al cargar la información.";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("error",model);
+        }
+
+        model.addAttribute("comentarios", comentarios);
+
+        return new ModelAndView("verComentario",model);
+    }
+
+    @RequestMapping(value = "/eliminarUsuarioAdministrador1IH", method = RequestMethod.POST)
+    public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) {
+        String correo = request.getParameter("usuario");
+
+        Usuario us = usuario.verificaUsuario(correo);
+        Persona p = persona.usuario_registrado(correo);
+
+        String wrong = "";
+
+        if (us == null) {
+            wrong = "El usuario no esta en la base de datos, favor de verificar el nombre";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        } else {
+            if(p == null){
+                usuario.delete(us);
+            }else{
+                persona.delete(p);
+                usuario.delete(us);
+            }
+        }
+        return new ModelAndView("AdministradorIH", model);
+
+    }
+
+
+     @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
+    public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
+         return new ModelAndView("eliminarUsuarioAdministradorIH", model);
     }
 }

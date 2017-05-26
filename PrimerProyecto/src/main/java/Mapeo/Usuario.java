@@ -16,13 +16,14 @@ import org.hibernate.annotations.CascadeType;
 /**
  *
  * @author diego
+ * @version 2.0
  */
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
     @Id
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.DELETE})
-    @Column(name="Correo_us")
+    @Column(name="correo_us")
     private String correo_us;
     
     @Column(name = "administrador")

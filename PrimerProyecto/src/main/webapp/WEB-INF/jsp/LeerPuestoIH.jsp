@@ -29,10 +29,10 @@
                     <button>Ver Puestos</button>
                 </form>
 
-                <form method="submit" action="/PrimerProyecto/modificarPuestoIH">
+                <form method="submit" action="/PrimerProyecto/ModificarPuestoIH">
                     <button>Modificar Puesto</button>
                 </form>
-                
+
                 <form method="POST" action="/PrimerProyecto/EliminarPuestoIH">
                     <button>Eliminar Puesto</button>
                 </form>

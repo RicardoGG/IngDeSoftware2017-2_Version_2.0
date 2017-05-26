@@ -1,2 +1,3 @@
-# IngDeSoftware2017-2
-Repositorio correspondiente al Primer Proyecto de Ingenieria de Software. 
+# IngDeSoftware2017-2_Version_2.0
+
+Repositorio correspondiente a la segunda iteracion del primer proyecto de software. Equipo MyCoffeSoft
