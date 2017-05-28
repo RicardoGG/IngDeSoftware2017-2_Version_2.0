@@ -543,6 +543,7 @@ public class Controlador {
         }
 
         model.addAttribute("comentarios", comentarios);
+        model.addAttribute("nombre", nombre);
 
         return new ModelAndView("VerComentariosIH",model);
     }

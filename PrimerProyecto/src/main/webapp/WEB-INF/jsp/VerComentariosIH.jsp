@@ -15,10 +15,11 @@
         <title>Comentarios</title>
     </head>
     <body>
-        <h1>Comentarios:</h1>
+        <h1>Comentarios de: ${nombre}</h1>
         <h2>
             <c:forEach var="comentario" items="${comentarios}">
                 <B>${comentario.comentario} escrito por:  ${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>
+                <br>
                 <br>
             </c:forEach>
         </h2>
