@@ -403,37 +403,52 @@ public class Controlador {
         Puesto puest;
         Calificar cali;
         
-        if(nombre.equals("")){
+        if(puesto.verificaPuesto(nombre) == null){
+            wrong = "El del puesto no existe favor de poner un nombre valido";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("ErrorIH",model);
+        }
+        else if(nombre.equals("")){
             wrong = "El nombre del puesto no puede estar vacio favor de poner un nombre";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         } else{
-
-            ////
             if(calificacion.equals("")){
                 wrong = "Debes agregar una calificación.";
                 model.addAttribute("mensaje",wrong);
                 return new ModelAndView("ErrorIH",model);
             }
             else{
-
+                if(isNumeric(calificacion) == true && Integer.parseInt(calificacion)>-1 && Integer.parseInt(calificacion)<11){
                 int c = Integer.parseInt(calificacion);
                 puest = puesto.verificaPuesto(nombre);
                 int n = puest.getCalificacion();
                 int califFinal = (c+n)/2;
                 puest.setCalificacion(califFinal);
-
+                
                 Persona p = persona.getPersona_correo(user);
                 cali = new Calificar(p, puest, comentario);
                 calificar.insert(cali);
 
                 puesto.update(puest);
-
+                }else{
+                    wrong = "Ocurrio un error al registrar tu calificacion, presiona la flecha de retorno en tu navegador para volver a intentarlo";
+                    model.addAttribute("mensaje",wrong);
+                    return new ModelAndView("ErrorIH",model);
+                }
             }
-            ////
         }
 
         return new ModelAndView("PerfilIH",model);
+    }
+    
+    private static boolean isNumeric(String cadena){
+        try{
+            Integer.parseInt(cadena);
+            return true;
+        }catch(NumberFormatException nfe){
+            return false;
+        }
     }
 
     /**
