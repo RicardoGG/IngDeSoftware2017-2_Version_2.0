@@ -25,21 +25,20 @@
         <form method ="POST" action="/PrimerProyecto/calificacionPuesto">
             <button>Calificar Puesto</button>
         </form>
-        <form action="." oninput="range_control_value.value = range_control.valueAsNumber">
-            <h2>
-                <c:forEach var="puesto" items="${puestos}">
-                    <B>Nombre: </B>${puesto.idNombre}<br>
-                    <B>Ubicacion: </B>${puesto.ubicacion}<br>
-                    <B>Calificacion:</B>${puesto.calificacion}<br>
+        <!--<form action="." oninput="range_control_value.value = range_control.valueAsNumber">-->
+        <h2>
+            <c:forEach var="puesto" items="${puestos}">
+                <B>Nombre: </B>${puesto.idNombre}<br>
+                <B>Ubicacion: </B>${puesto.ubicacion}<br>
+                <B>Calificacion:</B>${puesto.calificacion}<br>
                     <form method="POST" action="/PrimerProyecto/verComentarios">
-                        <input type="hidden" name="comentariosDe" value=${puesto.idNombre}>
+                        <input type="HIDDEN" name="comentariosDe" value=${puesto.idNombre}>
                         <button>Ver Comentarios</button>
-                        <br>
                     </form>
-                    <br>
-                </c:forEach>
-            </h2>
-        </form>
+                <br>
+            </c:forEach>
+        </h2>
+        <!--</form>-->
 
         <!-- MAPA -->
         <div id = "map"></div>
