@@ -14,14 +14,26 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Comentarios</title>
     </head>
+    
     <body>
-        <h1>Comentarios de: ${nombre}</h1>
-        <!--<h2>-->
+        <h1>Comentarios para ${nombre}</h1>
             <c:forEach var="comentario" items="${comentarios}">
-                <pre><font size="6">${comentario.comentario}</font> <font size="3">    escrito por:    </font>  <font size="6">${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</font></pre>
+                <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>  dijo:</font></pre>
+                <pre><font size="4" style="font-family: courier;">${comentario.comentario}</font></pre>
                 
+                <form method="POST" action="/PrimerProyecto/eliminarComentarioUser">
+                    <input type="HIDDEN" name="persona" value="${comentario.persona.correo}">
+                    <input type="HIDDEN" name="puesto" value="${comentario.puesto.idNombre}">
+                    <input type="HIDDEN" name="comentario" value="${comentario.comentario}">
+                    <button name="delete">Eliminar</button>
+                </form>
+                <form method="POST" action="/PrimerProyecto/editarComentario">
+                    <button name="edit">Editar</button>
+                </form>
+                    
+                <br>
+                <br>
                 <br>
             </c:forEach>
-        <!--</h2>-->
     </body>
 </html>

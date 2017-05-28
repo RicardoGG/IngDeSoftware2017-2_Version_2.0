@@ -48,7 +48,7 @@ public class Controlador {
     @Autowired
     CalificarDAO calificar;
 
-     String user;
+    String user;
 
     String edit_puesto;
 
@@ -592,5 +592,33 @@ public class Controlador {
      @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
     public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
          return new ModelAndView("eliminarUsuarioAdministradorIH", model);
+    }
+    
+    @RequestMapping(value = "/eliminarComentarioUser", method = RequestMethod.POST)
+    public ModelAndView eliminarComentarioUser(ModelMap model, HttpServletRequest request) {
+        String quien_comento = request.getParameter("persona");
+        String donde_comento = request.getParameter("puesto");
+        String que_comento = request.getParameter("comentario");
+        String wrong = "";
+        
+        if(!quien_comento.equals(user)){
+            wrong = "Tu no puedes eliminar este comentario.";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }
+        
+        Persona quien = persona.getPersona_correo(quien_comento);
+        Puesto lugar = puesto.verificaPuesto(donde_comento);
+        
+        Calificar comentario = new Calificar(quien, lugar, que_comento);
+        
+        calificar.delete(comentario);
+        
+        List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
+        
+        model.addAttribute("comentarios", comentarios);
+        model.addAttribute("nombre", donde_comento);
+        
+        return new ModelAndView("VerComentariosIH", model);
     }
 }
