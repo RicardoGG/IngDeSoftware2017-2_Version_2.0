@@ -347,7 +347,7 @@ public class Controlador {
     /**
      * redirige a la calificacion de puesto
      */
-    @RequestMapping(value="/CalificarPuestoIH", method = RequestMethod.POST)
+    @RequestMapping(value="/calificacionPuesto", method = RequestMethod.POST)
     public ModelAndView calificarPuestoP(ModelMap model,HttpServletRequest request){
         return new ModelAndView("CalificarPuestoIH",model);
     }
@@ -495,7 +495,7 @@ public class Controlador {
 
         model.addAttribute("puestos", puestos_registrados);
         
-        return new ModelAndView("verInformacionPuestoRegistrados",model);
+        return new ModelAndView("VerInformacionPuestoRegistradosIH",model);
     }
 
     /**
@@ -534,19 +534,19 @@ public class Controlador {
 
     @RequestMapping(value = "/verComentarios", method = RequestMethod.POST)
     public ModelAndView verComentarios(ModelMap model, HttpServletRequest request){
-        String nombre = request.getParameter("puesto.idNombre");
+        String nombre = request.getParameter("comentariosDe");
         String wrong = "";
-        List<String> comentarios = calificar.list_comentarios(nombre);
+        List<Calificar> comentarios = calificar.list_comentarios(nombre);
 
         if(comentarios == null){
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje",wrong);
-            return new ModelAndView("error",model);
+            return new ModelAndView("ErrorIH",model);
         }
 
         model.addAttribute("comentarios", comentarios);
 
-        return new ModelAndView("verComentario",model);
+        return new ModelAndView("VerComentariosIH",model);
     }
 
     @RequestMapping(value = "/eliminarUsuarioAdministrador1IH", method = RequestMethod.POST)

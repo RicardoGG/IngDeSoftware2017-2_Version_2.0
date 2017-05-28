@@ -110,8 +110,8 @@ public class CalificarDAO {
         return cal;
     }
     
-    public List<String> list_comentarios(String nombre){
-        List<String> comentarios = null;
+    public List<Calificar> list_comentarios(String nombre){
+        List<Calificar> comentarios = null;
 
         Session session = sessionFactory.openSession();
         Transaction tx = null;
@@ -122,7 +122,7 @@ public class CalificarDAO {
             String hql = "from Calificar c where c.puesto.idNombre = :puesto";
             Query query = session.createQuery(hql);
             query.setParameter("puesto", nombre);
-            comentarios = (List<String>)query.list();
+            comentarios = (List<Calificar>)query.list();
             tx.commit();
 
         } catch (Exception e) {

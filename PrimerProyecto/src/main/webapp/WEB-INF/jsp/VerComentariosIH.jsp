@@ -18,8 +18,8 @@
         <h1>Comentarios:</h1>
         <h2>
             <c:forEach var="comentario" items="${comentarios}">
-                <br>${calificar.comentario}
-                    <br>
+                <B>${comentario.comentario} escrito por:  ${comentario.persona.nombre}</B>
+                <br>
             </c:forEach>
         </h2>
     </body>
