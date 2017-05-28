@@ -32,7 +32,7 @@
                 <B>Ubicacion: </B>${puesto.ubicacion}<br>
                 <B>Calificacion:</B>${puesto.calificacion}<br>
                     <form method="POST" action="/PrimerProyecto/verComentarios">
-                        <input type="HIDDEN" name="comentariosDe" value=${puesto.idNombre}>
+                        <input type="HIDDEN" name="comentariosDe" value="${puesto.idNombre}">
                         <button>Ver Comentarios</button>
                     </form>
                 <br>

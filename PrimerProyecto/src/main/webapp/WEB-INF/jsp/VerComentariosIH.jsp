@@ -16,12 +16,12 @@
     </head>
     <body>
         <h1>Comentarios de: ${nombre}</h1>
-        <h2>
+        <!--<h2>-->
             <c:forEach var="comentario" items="${comentarios}">
-                <B>${comentario.comentario} escrito por:  ${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>
-                <br>
+                <pre><font size="6">${comentario.comentario}</font> <font size="3">    escrito por:    </font>  <font size="6">${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</font></pre>
+                
                 <br>
             </c:forEach>
-        </h2>
+        <!--</h2>-->
     </body>
 </html>
