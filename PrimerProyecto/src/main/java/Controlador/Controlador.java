@@ -456,34 +456,72 @@ public class Controlador {
      */
     @RequestMapping(value="/eliminarComentario", method = RequestMethod.POST)
     public ModelAndView eliminarComentario(ModelMap model,HttpServletRequest request){
-        String mail = request.getParameter("usuario");
-        String comenta = request.getParameter("comentario");
-        String pu = request.getParameter("puesto");
-        Puesto puest = puesto.verificaPuesto(pu);
-        Persona p = persona.usuario_registrado(mail);
-        Calificar c =  new Calificar(p,puest,comenta);
+        String quien_comento = request.getParameter("persona");
+        String donde_comento = request.getParameter("puesto");
+        String que_comento = request.getParameter("comentario");
+        String wrong = "";
 
-        String wrong ;
-        if(puest == null){
-        wrong = "El puesto no esta en la base de datos, favor de verificar el nombre";
-            model.addAttribute("mensaje", wrong);
-            return new ModelAndView("ErrorIH", model);
-        }else if(c!=null){
-            calificar.delete(c);
-        }else{
-            wrong = "Error al cargar";
+        
+        Persona quien = persona.getPersona_correo(quien_comento);
+        Puesto lugar = puesto.verificaPuesto(donde_comento);
+        
+        Calificar comentario = new Calificar(quien, lugar, que_comento);
+        
+        calificar.delete(comentario);
+        
+        List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
+        
+        model.addAttribute("comentarios", comentarios);
+        model.addAttribute("nombre", donde_comento);
+        
+        return new ModelAndView("VerComentariosAdminIH", model);
+    }
+    
+    /**Ver comentarios admin**
+     * 
+     */
+      @RequestMapping(value="/verComentariosAdmin", method = RequestMethod.POST)
+    public ModelAndView verComentarioPuestoAdmin(ModelMap model,HttpServletRequest request){
+        String nombre = request.getParameter("comentariosDe");
+        String wrong = "";
+        List<Calificar> comentarios = calificar.list_comentarios(nombre);
+
+        if(comentarios == null){
+            wrong = "Error al cargar la información.";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
 
-        return new ModelAndView("AdministradorIH",model);
+        model.addAttribute("comentarios", comentarios);
+        model.addAttribute("nombre", nombre);
+        return new ModelAndView("VerComentariosAdminIH",model);
     }
+    
 
-    /**Redireccion para eliminar comentarios**/
-    @RequestMapping(value="/eliminarComentarioAdmin", method = RequestMethod.POST)
-    public ModelAndView eliminarComentarioPant(ModelMap model,HttpServletRequest request){
-        return new ModelAndView("eliminarComentariosAdmin",model);
+
+
+     /**
+     * Funcion que regresa la informacion de los puestos con un usuario administrador
+     * @param model
+     * @return 
+     */
+    @RequestMapping(value="/verInfoAdmin", method = RequestMethod.POST)
+    public ModelAndView verInformacionPuestoAdmin(ModelMap model,HttpServletRequest request){
+        
+        String wrong = "";
+        List<Puesto> puestos_registrados = puesto.list_puestos();
+        
+        if(puestos_registrados == null){
+            wrong = "Error al cargar la información.";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("ErrorIH",model);
+        }
+
+        model.addAttribute("puestos", puestos_registrados);
+        
+        return new ModelAndView("VerInformacionPuestoAdminIH",model);
     }
+    
     /**
      * Funcion que regresa la informacion de los puestos con un usuario registrado
      * @param model
