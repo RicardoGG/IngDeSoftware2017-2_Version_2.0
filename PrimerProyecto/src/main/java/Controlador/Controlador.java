@@ -55,21 +55,24 @@ public class Controlador {
     // Expresion regular que verifica el correo.
     private final String PATTERN_EMAIL = "^[\\w-]+(\\.[\\w-]+)*@ciencias.unam.mx$";
 
-    /*
-     * Carga la pagina de inicio.
+    /** Carga la pagina de inicio
+     * 
+     * @return el nombre del archivo de la pantalla de inicio 
      */
     @RequestMapping(value = "/")
     public String PantallaDeInicioIH() {
         return "PantallaDeInicioIH";
     }
 
-    /*
-     * Carga los puestos de la base.
+    /**
+     * 
+     * @param model - el modelo a usar
+     * @param request -la solicitud
+     * @return la vista con los puestos cargados en la base de datos
      */
     @RequestMapping(value = "/verInformacion", method = RequestMethod.GET)
     public ModelAndView verInformacionPuesto(ModelMap model, HttpServletRequest request) {
-
-        String wrong = "";
+        String wrong;
         List<Puesto> puestos_registrados = puesto.list_puestos();
 
         if (puestos_registrados == null) {
@@ -83,8 +86,11 @@ public class Controlador {
         return new ModelAndView("VerInformacionPuestoIH", model);
     }
 
-    /*
-     * Cambia de la vista de inicio a el formulario.
+    /**
+     * Redireccion para el formulario de registro
+     * @param model
+     * @param request
+     * @return la pagina del formulario de registro
      */
     @RequestMapping(value = "/RegistrarseIH", method = RequestMethod.GET)
     public ModelAndView registrarse(ModelMap model, HttpServletRequest request) {
@@ -92,7 +98,10 @@ public class Controlador {
     }
 
     /**
-     * Cambia de la vista al formulario de cracion de puestos.
+     * Redireccion al formulario de creacion de puestos
+     * @param model
+     * @param request
+     * @return la pagina del formulario de creacion de puestos
      */
     @RequestMapping(value = "/CrearPuestoIH", method = RequestMethod.GET)
     public ModelAndView creaPuest(ModelMap model, HttpServletRequest request) {
@@ -100,7 +109,10 @@ public class Controlador {
     }
 
     /**
-     * Cambia de la vista a la lista de puestos en la base de datos.
+     * Muestra un listado de los puestos en la base de datos
+     * @param model
+     * @param request
+     * @return la pagina con la lista de puestos en la base de datos
      */
     @RequestMapping(value = "/LeerPuestoIH", method = RequestMethod.GET)
     public ModelAndView LeerPuestoIH(ModelMap model, HttpServletRequest request) {
@@ -119,7 +131,10 @@ public class Controlador {
     }
 
     /**
-     * Cambia de la vista al formulario de eliminacion de puestos.
+     * Redireccion al formulario de eliminacion de puestos
+     * @param model - el modelo
+     * @param request -la solicitud
+     * @return la pagina del formulario de eliminacion de puestos 
      */
     @RequestMapping(value = "/EliminarPuestoIH", method = RequestMethod.POST)
     public ModelAndView elimPuest(ModelMap model, HttpServletRequest request) {
@@ -134,8 +149,11 @@ public class Controlador {
         return new ModelAndView("EliminarPuestoIH", model);
     }
 
-    /*
-     * Iniciar Sesion
+    /**
+     * Metodo para iniciar sesion
+     * @param model
+     * @param request
+     * @return el perfil del usuario
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(ModelMap model, HttpServletRequest request) {
@@ -168,10 +186,8 @@ public class Controlador {
                 return new ModelAndView("AdministradorIH", model);
             }
 
-            //////
             user = email;
-            /////
-
+            
             String nombre = p.getNombre();
             String apellidoPat = p.getApPaterno();
             String apellidoMat = p.getApMaterno();
@@ -207,8 +223,10 @@ public class Controlador {
         return new ModelAndView("PantallaDeInicioIH", model);
     }
 
-    /*
-     * Metodo encargado de validar correo.
+    /**
+     * metodo para validar el dominio de una direccion email
+     * @param correo -el correo a validar
+     * @return true si la validacion coincide
      */
     private boolean valida_email(String correo) {
         Pattern pattern = Pattern.compile(PATTERN_EMAIL);
@@ -217,15 +235,17 @@ public class Controlador {
         return matcher.matches();
     }
 
-    /*
-     * Recibe los valores ingresados en el formulario.
-     * Si son correctos se guardara al usuario nuevo.
+    /**
+     * Formulario de registro
+     * @param model
+     * @param request
+     * @return la pantalla de inicio
      */
     @RequestMapping(value = "/formulario", method = RequestMethod.POST)
     public ModelAndView registro(ModelMap model, HttpServletRequest request) {
-        Persona p = null;
-        Usuario u = null;
-        String wrong = "";
+        Persona p;
+        Usuario u;
+        String wrong;
 
         String nombre = request.getParameter("nombre");
         String apPaterno = request.getParameter("paterno");
@@ -254,7 +274,10 @@ public class Controlador {
     }
 
     /**
-     * Metodo para crear nuevos puestos
+     * Metodo para crear puestos
+     * @param model
+     * @param request
+     * @return la pagina de home del administrador
      */
     @RequestMapping(value = "/formularioPuesto", method = RequestMethod.POST)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) {
@@ -287,10 +310,12 @@ public class Controlador {
         return new ModelAndView("AdministradorIH", model);
     }
 
-    /**
-     * Metodo para eliminar un puesto de la base de datos (para el
-     * Administrador)
-     */
+   /**
+    * Metodo para eliminar puestos
+    * @param model
+    * @param request
+    * @return el home del administrador
+    */
     @RequestMapping(value = "/eliminarPuesto", method = RequestMethod.POST)
     public ModelAndView eliminarPuesto(ModelMap model, HttpServletRequest request) {
         String nombre = request.getParameter("puesto");
@@ -343,7 +368,10 @@ public class Controlador {
     }
     
     /**
-     * redirige a la calificacion de puesto
+     * Redireccion del boton a la pantalla para calificar los puestos
+     * @param model
+     * @param request
+     * @return la pantalla para calificar un puesto
      */
     @RequestMapping(value="/calificacionPuesto", method = RequestMethod.POST)
     public ModelAndView calificarPuestoP(ModelMap model,HttpServletRequest request){
@@ -380,9 +408,12 @@ public class Controlador {
     }
     
     
-    /*
-    Calificacion del puesto
-    */
+    /**
+     * Metodo para calificar el puesto
+     * @param model
+     * @param request
+     * @return la pantalla de inicio
+     */
      @RequestMapping(value="/calificarPuesto2", method = RequestMethod.POST)
     public ModelAndView calificarPuesto(ModelMap model,HttpServletRequest request){
         String nombre = request.getParameter("nombre");
@@ -442,6 +473,12 @@ public class Controlador {
         return new ModelAndView("PerfilIH",model);
     }
     
+    /**
+     * Metodo auxiliar para verificar si una cadena representa un valor numerico
+     * @param cadena -la cadena a verificar
+     * @return true si representa un valor numerico, false en otro caso
+     * 
+     */
     private static boolean isNumeric(String cadena){
         try{
             Integer.parseInt(cadena);
@@ -452,16 +489,17 @@ public class Controlador {
     }
 
     /**
-     *Funcion para eliminar comentarios
+     * Metodo para que el administrador elimine comentarios
+     * @param model
+     * @param request
+     * @return la pantalla de comentarios correspondiente al puesto asociado
      */
     @RequestMapping(value="/eliminarComentario", method = RequestMethod.POST)
     public ModelAndView eliminarComentario(ModelMap model,HttpServletRequest request){
         String quien_comento = request.getParameter("persona");
         String donde_comento = request.getParameter("puesto");
         String que_comento = request.getParameter("comentario");
-        String wrong = "";
 
-        
         Persona quien = persona.getPersona_correo(quien_comento);
         Puesto lugar = puesto.verificaPuesto(donde_comento);
         
@@ -477,8 +515,11 @@ public class Controlador {
         return new ModelAndView("VerComentariosAdminIH", model);
     }
     
-    /**Ver comentarios admin**
-     * 
+    /**
+     * Redireccion para la pagina de comentarios de un puesto determinado
+     * @param model
+     * @param request
+     * @return la pagina de comentarios de un puesto determinado
      */
       @RequestMapping(value="/verComentariosAdmin", method = RequestMethod.POST)
     public ModelAndView verComentarioPuestoAdmin(ModelMap model,HttpServletRequest request){
@@ -503,7 +544,7 @@ public class Controlador {
      /**
      * Funcion que regresa la informacion de los puestos con un usuario administrador
      * @param model
-     * @return 
+     * @return la pagina con la informacion de los puestos -implica las funcionalidades de un usuario estadar
      */
     @RequestMapping(value="/verInfoAdmin", method = RequestMethod.POST)
     public ModelAndView verInformacionPuestoAdmin(ModelMap model,HttpServletRequest request){
@@ -525,27 +566,18 @@ public class Controlador {
     /**
      * Funcion que regresa la informacion de los puestos con un usuario registrado
      * @param model
-     * @return 
+     * @return la pagina con la informacion de los puestos para un usuario -no admin-
      */
     @RequestMapping(value="/verInfoRegistrado", method = RequestMethod.POST)
     public ModelAndView verInformacionPuestoUsReg(ModelMap model,HttpServletRequest request){
-        
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();
-        //List<List <String>> comentarios = new ArrayList<>();
-
-        //for(Puesto p: puestos_registrados){
-        //    comentarios.add(calificar.list_comentarios(p.getIdNombre()));
-        //}
-        
         if(puestos_registrados == null){
             wrong = "Error al cargar la información.";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
-
         model.addAttribute("puestos", puestos_registrados);
-        
         return new ModelAndView("VerInformacionPuestoRegistradosIH",model);
     }
 
@@ -583,6 +615,12 @@ public class Controlador {
         return new ModelAndView("AdministradorIH", model);
     }
 
+    /**
+     * Metodo que muestra los comentarios a un usuario -no admin-
+     * @param model
+     * @param request
+     * @return 
+     */
     @RequestMapping(value = "/verComentarios", method = RequestMethod.POST)
     public ModelAndView verComentarios(ModelMap model, HttpServletRequest request){
         String nombre = request.getParameter("comentariosDe");
@@ -601,6 +639,12 @@ public class Controlador {
         return new ModelAndView("VerComentariosIH",model);
     }
 
+    /**
+     * Metodo para eliminar un usuario del sistema.
+     * @param model
+     * @param request
+     * @return la pagina home del administrador
+     */
     @RequestMapping(value = "/eliminarUsuarioAdministrador1IH", method = RequestMethod.POST)
     public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) {
         String correo = request.getParameter("usuario");
@@ -626,18 +670,30 @@ public class Controlador {
 
     }
 
-
+    /**
+     * Redireccion para el formulario de eliminacion de usuarios
+     * @param model
+     * @param request
+     * @return la pagina del formulario para eliminar usuarios
+     */
      @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
     public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
          return new ModelAndView("eliminarUsuarioAdministradorIH", model);
     }
     
+    /**
+     * Metodo para eliminar comentarios -usuario no admin-
+     * Difiere con el metodo del administrador en verificar que el usuario no pueda eliminar comentarios de otros usuarios
+     * @param model
+     * @param request
+     * @return La pagina de comentarios asociada a un puesto determinado
+     */
     @RequestMapping(value = "/eliminarComentarioUser", method = RequestMethod.POST)
     public ModelAndView eliminarComentarioUser(ModelMap model, HttpServletRequest request) {
         String quien_comento = request.getParameter("persona");
         String donde_comento = request.getParameter("puesto");
         String que_comento = request.getParameter("comentario");
-        String wrong = "";
+        String wrong;
         
         if(!quien_comento.equals(user)){
             wrong = "Tu no puedes eliminar este comentario.";
@@ -647,11 +703,8 @@ public class Controlador {
         
         Persona quien = persona.getPersona_correo(quien_comento);
         Puesto lugar = puesto.verificaPuesto(donde_comento);
-        
         Calificar comentario = new Calificar(quien, lugar, que_comento);
-        
         calificar.delete(comentario);
-        
         List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
         
         model.addAttribute("comentarios", comentarios);
@@ -660,6 +713,12 @@ public class Controlador {
         return new ModelAndView("VerComentariosIH", model);
     }
     
+    /**
+     * Redireccion para la pagina de editar comentarios -exclusivo usuario noAdmin-
+     * @param model
+     * @param request
+     * @return la pagina del formulario para editar un comentario
+     */
     @RequestMapping(value = "/editarComentario", method = RequestMethod.POST)
     public ModelAndView editarComentario(ModelMap model, HttpServletRequest request) {
         String quien_comento = request.getParameter("persona");
@@ -680,23 +739,23 @@ public class Controlador {
         return new ModelAndView("editarComentarioIH", model);
     }
     
+    /**
+     * Metodo para guardar el comentario editado
+     * @param model
+     * @param request
+     * @return la pagina de comentarios asociada a un puesto determinado
+     */
     @RequestMapping(value = "/guardarComentario", method = RequestMethod.POST)
     public ModelAndView guardarComentario(ModelMap model, HttpServletRequest request) {
         String quien_comento = request.getParameter("persona");
         String donde_comento = request.getParameter("puesto");
         String nuevo_comentario = request.getParameter("comentario_nuevo");
-        
         Calificar comentario = calificar.buscar_comentario(quien_comento);
-        
         comentario.setComentario(nuevo_comentario);
-        
         calificar.update(comentario);
-        
         List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
-        
         model.addAttribute("comentarios", comentarios);
         model.addAttribute("nombre", donde_comento);
-        
         return new ModelAndView("VerComentariosIH", model);
     }
 }

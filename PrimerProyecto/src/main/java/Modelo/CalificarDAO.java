@@ -64,7 +64,10 @@ public class CalificarDAO {
         finally { session.close(); }
     }
     
-    
+    /**
+     * actualiza una calificacion en la base de datos
+     * @param c -la calificacion a editar
+     */
     public void update(Calificar c){
         Session session = sessionFactory.openSession();
         
@@ -83,7 +86,11 @@ public class CalificarDAO {
         finally { session.close(); }
     }
     
-   
+   /**
+    * busca un puesto
+    * @param nombre -el nombre del puesto
+    * @return la calificacion
+    */
     public Calificar buscar(String nombre){
         Calificar cal = null;
         Session session = sessionFactory.openSession();
@@ -109,6 +116,12 @@ public class CalificarDAO {
         
         return cal;
     }
+    
+    /**
+     * devuelve la lista de comentarios de u n puesto
+     * @param nombre
+     * @return la lista de puestos
+     */
     
     public List<Calificar> list_comentarios(String nombre){
         List<Calificar> comentarios = null;
@@ -137,6 +150,11 @@ public class CalificarDAO {
         return comentarios;
     }
     
+    /**
+     * funcion para buscar un comentario hecho por un usuario dado su email
+     * @param email
+     * @return la calificacion 
+     */
     public Calificar buscar_comentario(String email){
         Calificar cal = null;
         Session session = sessionFactory.openSession();
