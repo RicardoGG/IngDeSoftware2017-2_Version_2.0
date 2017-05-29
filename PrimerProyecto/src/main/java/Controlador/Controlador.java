@@ -12,6 +12,7 @@ import Modelo.UsuarioDAO;
 import Modelo.VenderDAO;
 import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +20,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 /**
  *
  * @author diego
@@ -234,7 +241,8 @@ public class Controlador {
         Matcher matcher = pattern.matcher(correo);
         return matcher.matches();
     }
-
+    
+    
     /**
      * Formulario de registro
      * @param model
@@ -242,7 +250,7 @@ public class Controlador {
      * @return la pantalla de inicio
      */
     @RequestMapping(value = "/formulario", method = RequestMethod.POST)
-    public ModelAndView registro(ModelMap model, HttpServletRequest request) {
+    public ModelAndView registro(ModelMap model, HttpServletRequest request,MailSender mm) {
         Persona p;
         Usuario u;
         String wrong;

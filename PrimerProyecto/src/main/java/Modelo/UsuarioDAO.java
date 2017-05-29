@@ -171,7 +171,7 @@ public class UsuarioDAO {
         try{
 
             tx = session.beginTransaction();
-            String hql = "from Usuario where correo = :correoUsuario";
+            String hql = "from Usuario where correo_us = :correoUsuario";
             Query query = session.createQuery(hql);
             query.setParameter("correoUsuario", correo);
             usuario = (Usuario)query.uniqueResult();
