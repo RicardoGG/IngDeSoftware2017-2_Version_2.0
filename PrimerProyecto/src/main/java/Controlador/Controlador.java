@@ -621,4 +621,44 @@ public class Controlador {
         
         return new ModelAndView("VerComentariosIH", model);
     }
+    
+    @RequestMapping(value = "/editarComentario", method = RequestMethod.POST)
+    public ModelAndView editarComentario(ModelMap model, HttpServletRequest request) {
+        String quien_comento = request.getParameter("persona");
+        String donde_comento = request.getParameter("puesto");
+        String que_comento = request.getParameter("comentario");
+        String wrong = "";
+        
+        if(!quien_comento.equals(user)){
+            wrong = "Tu no puedes editar este comentario.";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }
+        
+        model.addAttribute("comentario", que_comento);
+        model.addAttribute("puesto", donde_comento);
+        model.addAttribute("email", quien_comento);
+        
+        return new ModelAndView("editarComentarioIH", model);
+    }
+    
+    @RequestMapping(value = "/guardarComentario", method = RequestMethod.POST)
+    public ModelAndView guardarComentario(ModelMap model, HttpServletRequest request) {
+        String quien_comento = request.getParameter("persona");
+        String donde_comento = request.getParameter("puesto");
+        String nuevo_comentario = request.getParameter("comentario_nuevo");
+        
+        Calificar comentario = calificar.buscar_comentario(quien_comento);
+        
+        comentario.setComentario(nuevo_comentario);
+        
+        calificar.update(comentario);
+        
+        List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
+        
+        model.addAttribute("comentarios", comentarios);
+        model.addAttribute("nombre", donde_comento);
+        
+        return new ModelAndView("VerComentariosIH", model);
+    }
 }

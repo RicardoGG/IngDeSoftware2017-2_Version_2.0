@@ -20,7 +20,7 @@
             <c:forEach var="comentario" items="${comentarios}">
                 <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>  dijo:</font></pre>
                 <pre><font size="4" style="font-family: courier;">${comentario.comentario}</font></pre>
-                
+
                 <form method="POST" action="/PrimerProyecto/eliminarComentarioUser">
                     <input type="HIDDEN" name="persona" value="${comentario.persona.correo}">
                     <input type="HIDDEN" name="puesto" value="${comentario.puesto.idNombre}">
@@ -28,9 +28,12 @@
                     <button name="delete">Eliminar</button>
                 </form>
                 <form method="POST" action="/PrimerProyecto/editarComentario">
+                    <input type="HIDDEN" name="persona" value="${comentario.persona.correo}">
+                    <input type="HIDDEN" name="puesto" value="${comentario.puesto.idNombre}">
+                    <input type="HIDDEN" name="comentario" value="${comentario.comentario}">
                     <button name="edit">Editar</button>
                 </form>
-                    
+
                 <br>
                 <br>
                 <br>

@@ -136,4 +136,30 @@ public class CalificarDAO {
 
         return comentarios;
     }
+    
+    public Calificar buscar_comentario(String email){
+        Calificar cal = null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try{
+            
+            tx = session.beginTransaction();
+            String hql = "from Calificar c where c.persona.correo = :correo";
+            Query query = session.createQuery(hql);
+            query.setParameter("correo", email);
+            cal = (Calificar)query.uniqueResult();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        
+        return cal;
+    }
 }
