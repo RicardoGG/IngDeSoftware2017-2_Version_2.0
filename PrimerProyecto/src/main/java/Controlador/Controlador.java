@@ -27,8 +27,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.MailSender;
+//import org.springframework.mail.SimpleMailMessage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -253,7 +253,7 @@ public class Controlador {
      * @return la pantalla de inicio.
      */
     @RequestMapping(value = "/formulario", method = RequestMethod.POST)
-    public ModelAndView registro(ModelMap model, HttpServletRequest request,MailSender mm) {
+    public ModelAndView registro(ModelMap model, HttpServletRequest request) {
         Persona p;
         Usuario u;
         String wrong;
