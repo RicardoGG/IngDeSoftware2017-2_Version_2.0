@@ -97,7 +97,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
-            <version>4.3.2.RELEASE</version>
+            <version>4.0.1.RELEASE</version>
         </dependency>
         
         <!--JAVAMAIL-->

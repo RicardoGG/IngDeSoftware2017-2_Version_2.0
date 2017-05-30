@@ -11,6 +11,8 @@ import Modelo.PuestoDAO;
 import Modelo.UsuarioDAO;
 import Modelo.VenderDAO;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -27,11 +29,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-//import org.springframework.mail.MailSender;
-//import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 /**
  *
  * @author diego
@@ -39,6 +42,10 @@ import javax.mail.internet.MimeMessage;
  */
 @Controller
 public class Controlador {
+    
+    //Objeto que se encarga de mandar el email
+    @Autowired
+    JavaMailSender mailSender;
     
     // Objeto que se conecta con la tabla usuario.
     @Autowired
@@ -253,7 +260,7 @@ public class Controlador {
      * @return la pantalla de inicio.
      */
     @RequestMapping(value = "/formulario", method = RequestMethod.POST)
-    public ModelAndView registro(ModelMap model, HttpServletRequest request) {
+    public ModelAndView registro(ModelMap model, HttpServletRequest request) throws UnknownHostException {
         Persona p;
         Usuario u;
         String wrong;
@@ -279,6 +286,14 @@ public class Controlador {
                 u = new Usuario(correo, "0");
                 persona.insert(p);
                 usuario.insert(u);
+                String fromAddr = "myCoffeeSoftIS@gmail.com";
+                //Asunto del correo
+                String subject = "Mensaje de activacion";
+                //Cuerpo del correo
+                String body = "Gracias por registrarte a la aplicacion de MyCoffeeSoft :) \n"
+                        + InetAddress.getLocalHost().getHostAddress() + ":8084/PrimerProyecto/";
+                Mail mail = new Mail();
+                mailSender.send(mail.email(correo, fromAddr, subject, body));
             }
         }
         return new ModelAndView("PantallaDeInicioIH", model);
