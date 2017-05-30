@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
  * @version 2.0
  */
 public class PuestoDAO {
-    // Atributo para iniciar nueva sesion
+    // Atributo para iniciar nueva sesion.
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -87,7 +87,7 @@ public class PuestoDAO {
     }
     
     /**
-     * Obtenemos la lista de puestos.
+     * Metodo para obtener la lista de puestos.
      * @return La lista de puestos registrados.
      */
     public List<Puesto> list_puestos(){
@@ -119,6 +119,8 @@ public class PuestoDAO {
     
     /**
      * Metodo para verificar si un puesto ya esta
+     * @param nombre El nombre del puesto.
+     * @return El puesto si es que esta registrado.
      */
     public Puesto verificaPuesto(String nombre){
         Puesto puesto = null;
@@ -145,6 +147,4 @@ public class PuestoDAO {
         
         return puesto;
     }
-    
-    
 }

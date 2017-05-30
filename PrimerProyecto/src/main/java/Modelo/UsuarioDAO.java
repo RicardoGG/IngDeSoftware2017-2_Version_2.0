@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
  * @version 2.0
  */
 public class UsuarioDAO {
-    // Atributo para iniciar nueva sesion
+    // Atributo para iniciar nueva sesion.
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -86,7 +86,12 @@ public class UsuarioDAO {
         finally { session.close(); }
     }
     
-    
+    /**
+     * Metodo que busca un usuario por su correo y contrasenia.
+     * @param correo El correo del usuario.
+     * @param pas La contrasenia del usuario.
+     * @return El usuario, si es que esta registrado en la base.
+     */
     public Usuario getUser(String correo, String pas) {
         Usuario user = null;
         Session session = sessionFactory.openSession();
@@ -113,6 +118,7 @@ public class UsuarioDAO {
     /**
      * Revisamos si un usuario es administrador.
      * @param correo correo del usuario a revisar.
+     * @return 1 si es administrador, 0 e.o.c.
     */
     public String es_Admin(String correo){
         String admin = "";
@@ -137,6 +143,10 @@ public class UsuarioDAO {
         return admin;
     }
     
+    /**
+     * Metodo para obtener a todos los usuarios registrados.
+     * @return La lista de usuarios en la base.
+     */
     public List<Usuario> list_usuarios(){
         List<Usuario> usuarios = null;
 
@@ -162,7 +172,12 @@ public class UsuarioDAO {
 
         return usuarios;
     }
-
+    
+    /**
+     * Metodo para buscar un usuario por su correo.
+     * @param correo El correo del usuario.
+     * @return El usuario, si es que esta registrado.
+     */
     public Usuario verificaUsuario(String correo){
         Usuario usuario = null;
         Session session = sessionFactory.openSession();
@@ -188,5 +203,4 @@ public class UsuarioDAO {
 
         return usuario;
     }
-
 }

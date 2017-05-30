@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
  * @version 2.0
  */
 public class PersonaDAO {
-    // Atributo para iniciar nueva sesion
+    // Atributo para iniciar nueva sesion.
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -85,6 +85,11 @@ public class PersonaDAO {
         finally { session.close(); }
     }
     
+    /**
+     * Metodo para buscar una persona por su correo.
+     * @param correo El correo de la persona.
+     * @return La persona si es que esta registrada en la base.
+     */
     public Persona getPersona_correo(String correo) {
         Persona per = null;
         Session session = sessionFactory.openSession();
@@ -108,6 +113,12 @@ public class PersonaDAO {
         return per;
     }
     
+    /**
+     * Metodo para buscar a una persona por su correo y contrasenia.
+     * @param correo El correo de la persona.
+     * @param con La contrasenia de la persona.
+     * @return La persona si es que esta registrada en la base.
+     */
     public Persona getPersona(String correo, String con) {
         Persona per = null;
         Session session = sessionFactory.openSession();
@@ -131,7 +142,11 @@ public class PersonaDAO {
         return per;
     }
     
-    
+    /**
+     * Metodo para buscar una persona por su correo.
+     * @param correo El correo de la persona.
+     * @return La persona, si es que esta registrada en la base.
+     */
     public Persona usuario_registrado(String correo){
         Persona person = null;
         
@@ -157,6 +172,4 @@ public class PersonaDAO {
         }
         return person;
     }
-    
-    
 }

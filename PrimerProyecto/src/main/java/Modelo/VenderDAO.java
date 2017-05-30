@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
  * @version 2.0
  */
 public class VenderDAO {
-    // Atributo para iniciar nueva sesion
+    // Atributo para iniciar nueva sesion.
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -86,7 +86,11 @@ public class VenderDAO {
         finally { session.close(); }
     }
     
-    
+    /**
+     * Metodo para buscar un puesto en la base.
+     * @param nombre El nombre del puesto.
+     * @return Una lista de puestos.
+     */
     public List<Vender> buscar(String nombre){
         List<Vender> vender = null;
         
@@ -113,6 +117,4 @@ public class VenderDAO {
         
         return vender;
     }
-    
-    
 }

@@ -11,7 +11,7 @@ import org.hibernate.Transaction;
  * @version 2.0
  */
 public class AlimentosDAO {
-    // Atributo para iniciar nueva sesion
+    // Atributo para iniciar nueva sesion.
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sessionFactory) {

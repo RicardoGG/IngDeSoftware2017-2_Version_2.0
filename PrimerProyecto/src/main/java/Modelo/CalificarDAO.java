@@ -13,7 +13,7 @@ import org.hibernate.Transaction;
  * @version 2.0
  */
 public class CalificarDAO {
-    // Atributo para iniciar nueva sesion
+    // Atributo para iniciar nueva sesion.
     private SessionFactory sessionFactory;
     
     public void setSessionFactory(SessionFactory sessionFactory) {
@@ -65,8 +65,8 @@ public class CalificarDAO {
     }
     
     /**
-     * actualiza una calificacion en la base de datos
-     * @param c -la calificacion a editar
+     * Actualiza un comentario en la base de datos.
+     * @param c El comentario a editar.
      */
     public void update(Calificar c){
         Session session = sessionFactory.openSession();
@@ -87,9 +87,9 @@ public class CalificarDAO {
     }
     
    /**
-    * busca un puesto
-    * @param nombre -el nombre del puesto
-    * @return la calificacion
+    * Busca un puesto.
+    * @param nombre El nombre del puesto.
+    * @return Los comentarios del puesto.
     */
     public Calificar buscar(String nombre){
         Calificar cal = null;
@@ -118,9 +118,9 @@ public class CalificarDAO {
     }
     
     /**
-     * devuelve la lista de comentarios de u n puesto
-     * @param nombre
-     * @return la lista de puestos
+     * Devuelve la lista de comentarios de un puesto.
+     * @param nombre El nombre del puesto.
+     * @return La lista de comentarios.
      */
     
     public List<Calificar> list_comentarios(String nombre){
@@ -151,9 +151,9 @@ public class CalificarDAO {
     }
     
     /**
-     * funcion para buscar un comentario hecho por un usuario dado su email
-     * @param email
-     * @return la calificacion 
+     * Metodo para buscar un comentario hecho por un usuario dado su email.
+     * @param email El email del usuario
+     * @return El comentario.
      */
     public Calificar buscar_comentario(String email){
         Calificar cal = null;

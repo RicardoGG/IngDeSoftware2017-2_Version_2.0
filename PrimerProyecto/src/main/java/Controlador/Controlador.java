@@ -39,32 +39,36 @@ import javax.mail.internet.MimeMessage;
  */
 @Controller
 public class Controlador {
-
+    
+    // Objeto que se conecta con la tabla usuario.
     @Autowired
     UsuarioDAO usuario;
 
+    // Objeto que se conecta con la tabla persona.
     @Autowired
     PersonaDAO persona;
 
+    // Objeto que se conecta con la tabla puesto.
     @Autowired
     PuestoDAO puesto;
     
+    // Objeto que se conecta con la tabla vender.
     @Autowired
     VenderDAO vender;
     
+    // Objeto que se conecta con la tabla calificar.
     @Autowired
     CalificarDAO calificar;
 
+    // Usuario que inicio sesion.
     String user;
-
-    String edit_puesto;
 
     // Expresion regular que verifica el correo.
     private final String PATTERN_EMAIL = "^[\\w-]+(\\.[\\w-]+)*@ciencias.unam.mx$";
 
-    /** Carga la pagina de inicio
-     * 
-     * @return el nombre del archivo de la pantalla de inicio 
+    /** 
+     * Carga la pagina de inicio
+     * @return el nombre de la vista de inicio.
      */
     @RequestMapping(value = "/")
     public String PantallaDeInicioIH() {
@@ -73,8 +77,8 @@ public class Controlador {
 
     /**
      * 
-     * @param model - el modelo a usar
-     * @param request -la solicitud
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la vista con los puestos cargados en la base de datos
      */
     @RequestMapping(value = "/verInformacion", method = RequestMethod.GET)
@@ -94,10 +98,10 @@ public class Controlador {
     }
 
     /**
-     * Redireccion para el formulario de registro
-     * @param model
-     * @param request
-     * @return la pagina del formulario de registro
+     * Redireccion para el formulario de registro.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina del formulario de registro.
      */
     @RequestMapping(value = "/RegistrarseIH", method = RequestMethod.GET)
     public ModelAndView registrarse(ModelMap model, HttpServletRequest request) {
@@ -105,10 +109,10 @@ public class Controlador {
     }
 
     /**
-     * Redireccion al formulario de creacion de puestos
-     * @param model
-     * @param request
-     * @return la pagina del formulario de creacion de puestos
+     * Redireccion al formulario de creacion de puestos.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina del formulario de creacion de puestos.
      */
     @RequestMapping(value = "/CrearPuestoIH", method = RequestMethod.GET)
     public ModelAndView creaPuest(ModelMap model, HttpServletRequest request) {
@@ -116,10 +120,10 @@ public class Controlador {
     }
 
     /**
-     * Muestra un listado de los puestos en la base de datos
-     * @param model
-     * @param request
-     * @return la pagina con la lista de puestos en la base de datos
+     * Muestra un listado de los puestos en la base de datos.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina con la lista de puestos en la base de datos.
      */
     @RequestMapping(value = "/LeerPuestoIH", method = RequestMethod.GET)
     public ModelAndView LeerPuestoIH(ModelMap model, HttpServletRequest request) {
@@ -138,10 +142,10 @@ public class Controlador {
     }
 
     /**
-     * Redireccion al formulario de eliminacion de puestos
-     * @param model - el modelo
-     * @param request -la solicitud
-     * @return la pagina del formulario de eliminacion de puestos 
+     * Redireccion al formulario de eliminacion de puestos.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina del formulario de eliminacion de puestos.
      */
     @RequestMapping(value = "/EliminarPuestoIH", method = RequestMethod.POST)
     public ModelAndView elimPuest(ModelMap model, HttpServletRequest request) {
@@ -157,10 +161,10 @@ public class Controlador {
     }
 
     /**
-     * Metodo para iniciar sesion
-     * @param model
-     * @param request
-     * @return el perfil del usuario
+     * Metodo para iniciar sesion.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return el perfil del usuario.
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(ModelMap model, HttpServletRequest request) {
@@ -214,11 +218,10 @@ public class Controlador {
 
     /**
      * Metodo para cerrar sesión
-     *
-     * @param model-el modelo
-     * @param request-la solicitud
-     * @param response-la respuesta
-     * @return ModelAndView-la página de inicio
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @param response - la respuesta.
+     * @return ModelAndView-la página de inicio.
      * @throws javax.servlet.ServletException
      * @throws java.io.IOException
      */
@@ -231,9 +234,9 @@ public class Controlador {
     }
 
     /**
-     * metodo para validar el dominio de una direccion email
-     * @param correo -el correo a validar
-     * @return true si la validacion coincide
+     * Metodo para validar el dominio de una direccion email.
+     * @param correo - El correo a validar.
+     * @return true si la validacion coincide, false e.o.c.
      */
     private boolean valida_email(String correo) {
         Pattern pattern = Pattern.compile(PATTERN_EMAIL);
@@ -244,10 +247,10 @@ public class Controlador {
     
     
     /**
-     * Formulario de registro
-     * @param model
-     * @param request
-     * @return la pantalla de inicio
+     * Formulario de registro.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pantalla de inicio.
      */
     @RequestMapping(value = "/formulario", method = RequestMethod.POST)
     public ModelAndView registro(ModelMap model, HttpServletRequest request,MailSender mm) {
@@ -282,10 +285,10 @@ public class Controlador {
     }
 
     /**
-     * Metodo para crear puestos
-     * @param model
-     * @param request
-     * @return la pagina de home del administrador
+     * Metodo para crear puestos.
+     * @param model - el modelo a usar
+     * @param request - la solicitud.
+     * @return la pagina de home del administrador.
      */
     @RequestMapping(value = "/formularioPuesto", method = RequestMethod.POST)
     public ModelAndView creaPuesto(ModelMap model, HttpServletRequest request) {
@@ -319,10 +322,10 @@ public class Controlador {
     }
 
    /**
-    * Metodo para eliminar puestos
-    * @param model
-    * @param request
-    * @return el home del administrador
+    * Metodo para eliminar puestos.
+    * @param model - el modelo a usar.
+    * @param request - la solicitud.
+    * @return el home del administrador.
     */
     @RequestMapping(value = "/eliminarPuesto", method = RequestMethod.POST)
     public ModelAndView eliminarPuesto(ModelMap model, HttpServletRequest request) {
@@ -351,9 +354,8 @@ public class Controlador {
 
     /**
      * Regresa a la vista del administrador.
-     *
-     * @param model
-     * @param request
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la vista del administrador.
      */
     @RequestMapping(value = "/cancelar", method = RequestMethod.POST)
@@ -362,10 +364,9 @@ public class Controlador {
     }
 
     /**
-     * Regresa a la vista del administrador.
-     *
-     * @param model
-     * @param request
+     * Metodo para editar un puesto.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la vista del puesto a modificar.
      */
     @RequestMapping(value = "/ModificarPuestoIH", method = RequestMethod.GET)
@@ -376,10 +377,10 @@ public class Controlador {
     }
     
     /**
-     * Redireccion del boton a la pantalla para calificar los puestos
-     * @param model
-     * @param request
-     * @return la pantalla para calificar un puesto
+     * Redireccion del boton a la pantalla para calificar los puestos.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pantalla para calificar un puesto.
      */
     @RequestMapping(value="/calificacionPuesto", method = RequestMethod.POST)
     public ModelAndView calificarPuestoP(ModelMap model,HttpServletRequest request){
@@ -388,9 +389,8 @@ public class Controlador {
 
     /**
      * Va a la vista con los datos del puesto.
-     *
-     * @param model
-     * @param request
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la vista del puesto a modificar.
      */
     @RequestMapping(value = "/editPuesto", method = RequestMethod.POST)
@@ -418,8 +418,8 @@ public class Controlador {
     
     /**
      * Metodo para calificar el puesto
-     * @param model
-     * @param request
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la pantalla de inicio
      */
      @RequestMapping(value="/calificarPuesto2", method = RequestMethod.POST)
@@ -485,7 +485,6 @@ public class Controlador {
      * Metodo auxiliar para verificar si una cadena representa un valor numerico
      * @param cadena -la cadena a verificar
      * @return true si representa un valor numerico, false en otro caso
-     * 
      */
     private static boolean isNumeric(String cadena){
         try{
@@ -497,10 +496,10 @@ public class Controlador {
     }
 
     /**
-     * Metodo para que el administrador elimine comentarios
-     * @param model
-     * @param request
-     * @return la pantalla de comentarios correspondiente al puesto asociado
+     * Metodo para que el administrador elimine comentarios.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pantalla de comentarios correspondiente al puesto asociado.
      */
     @RequestMapping(value="/eliminarComentario", method = RequestMethod.POST)
     public ModelAndView eliminarComentario(ModelMap model,HttpServletRequest request){
@@ -524,10 +523,10 @@ public class Controlador {
     }
     
     /**
-     * Redireccion para la pagina de comentarios de un puesto determinado
-     * @param model
-     * @param request
-     * @return la pagina de comentarios de un puesto determinado
+     * Redireccion para la pagina de comentarios de un puesto determinado.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina de comentarios de un puesto determinado.
      */
       @RequestMapping(value="/verComentariosAdmin", method = RequestMethod.POST)
     public ModelAndView verComentarioPuestoAdmin(ModelMap model,HttpServletRequest request){
@@ -545,14 +544,12 @@ public class Controlador {
         model.addAttribute("nombre", nombre);
         return new ModelAndView("VerComentariosAdminIH",model);
     }
-    
 
-
-
-     /**
-     * Funcion que regresa la informacion de los puestos con un usuario administrador
-     * @param model
-     * @return la pagina con la informacion de los puestos -implica las funcionalidades de un usuario estadar
+    /**
+     * Funcion que regresa la informacion de los puestos con un usuario administrador.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina con la informacion de los puestos -implica las funcionalidades de un usuario estadar.
      */
     @RequestMapping(value="/verInfoAdmin", method = RequestMethod.POST)
     public ModelAndView verInformacionPuestoAdmin(ModelMap model,HttpServletRequest request){
@@ -572,8 +569,9 @@ public class Controlador {
     }
     
     /**
-     * Funcion que regresa la informacion de los puestos con un usuario registrado
-     * @param model
+     * Funcion que regresa la informacion de los puestos con un usuario registrado.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la pagina con la informacion de los puestos para un usuario -no admin-
      */
     @RequestMapping(value="/verInfoRegistrado", method = RequestMethod.POST)
@@ -591,9 +589,8 @@ public class Controlador {
 
     /**
      * Va a la vista con los datos del puesto.
-     *
-     * @param model
-     * @param request
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la vista del puesto a modificar.
      */
     @RequestMapping(value = "/actualizar", method = RequestMethod.POST)
@@ -625,9 +622,9 @@ public class Controlador {
 
     /**
      * Metodo que muestra los comentarios a un usuario -no admin-
-     * @param model
-     * @param request
-     * @return 
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return La lista de comentarios de cierto puesto.
      */
     @RequestMapping(value = "/verComentarios", method = RequestMethod.POST)
     public ModelAndView verComentarios(ModelMap model, HttpServletRequest request){
@@ -649,8 +646,8 @@ public class Controlador {
 
     /**
      * Metodo para eliminar un usuario del sistema.
-     * @param model
-     * @param request
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
      * @return la pagina home del administrador
      */
     @RequestMapping(value = "/eliminarUsuarioAdministrador1IH", method = RequestMethod.POST)
@@ -679,10 +676,10 @@ public class Controlador {
     }
 
     /**
-     * Redireccion para el formulario de eliminacion de usuarios
-     * @param model
-     * @param request
-     * @return la pagina del formulario para eliminar usuarios
+     * Redireccion para el formulario de eliminacion de usuarios.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina del formulario para eliminar usuarios.
      */
      @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
     public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
@@ -691,10 +688,10 @@ public class Controlador {
     
     /**
      * Metodo para eliminar comentarios -usuario no admin-
-     * Difiere con el metodo del administrador en verificar que el usuario no pueda eliminar comentarios de otros usuarios
-     * @param model
-     * @param request
-     * @return La pagina de comentarios asociada a un puesto determinado
+     * Difiere con el metodo del administrador en verificar que el usuario no pueda eliminar comentarios de otros usuarios.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return La pagina de comentarios asociada a un puesto determinado.
      */
     @RequestMapping(value = "/eliminarComentarioUser", method = RequestMethod.POST)
     public ModelAndView eliminarComentarioUser(ModelMap model, HttpServletRequest request) {
@@ -723,9 +720,9 @@ public class Controlador {
     
     /**
      * Redireccion para la pagina de editar comentarios -exclusivo usuario noAdmin-
-     * @param model
-     * @param request
-     * @return la pagina del formulario para editar un comentario
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina del formulario para editar un comentario.
      */
     @RequestMapping(value = "/editarComentario", method = RequestMethod.POST)
     public ModelAndView editarComentario(ModelMap model, HttpServletRequest request) {
@@ -748,10 +745,10 @@ public class Controlador {
     }
     
     /**
-     * Metodo para guardar el comentario editado
-     * @param model
-     * @param request
-     * @return la pagina de comentarios asociada a un puesto determinado
+     * Metodo para guardar el comentario editado.
+     * @param model - el modelo a usar.
+     * @param request - la solicitud.
+     * @return la pagina de comentarios asociada a un puesto determinado.
      */
     @RequestMapping(value = "/guardarComentario", method = RequestMethod.POST)
     public ModelAndView guardarComentario(ModelMap model, HttpServletRequest request) {
