@@ -14,7 +14,10 @@
     <body>
         <h1>Calificar</h1>
         <form method="POST" action="/PrimerProyecto/calificarPuesto2">
-            Nombre: <br> <input id="name" name="nombre" type="text" placeholder="Nombre"/><br>
+            <!--Nombre: <br> <input id="name" name="nombre" type="text" placeholder="Nombre"/><br>-->
+            <h3>${puesto}</h3>
+            <input type="HIDDEN" name="puesto" value="${puesto}">
+            <br>
             Calificacion: <br> <input id="calificacion" name="calificacion" type="text" placeholder="calificacion" /><br>
             <br>
             <br>

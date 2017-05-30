@@ -399,6 +399,8 @@ public class Controlador {
      */
     @RequestMapping(value="/calificacionPuesto", method = RequestMethod.POST)
     public ModelAndView calificarPuestoP(ModelMap model,HttpServletRequest request){
+        String nombre_puesto = request.getParameter("puesto");
+        model.addAttribute("puesto", nombre_puesto);
         return new ModelAndView("CalificarPuestoIH",model);
     }
 
@@ -439,7 +441,7 @@ public class Controlador {
      */
      @RequestMapping(value="/calificarPuesto2", method = RequestMethod.POST)
     public ModelAndView calificarPuesto(ModelMap model,HttpServletRequest request){
-        String nombre = request.getParameter("nombre");
+        String nombre = request.getParameter("puesto");
         String calificacion = request.getParameter("calificacion");
         String comentario = request.getParameter("comentario");
         
@@ -457,40 +459,32 @@ public class Controlador {
         Puesto puest;
         Calificar cali;
         
-        if(puesto.verificaPuesto(nombre) == null){
-            wrong = "El del puesto no existe favor de poner un nombre valido";
+        if(calificacion.equals("")){
+            wrong = "Debes agregar una calificación.";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
-        else if(nombre.equals("")){
-            wrong = "El nombre del puesto no puede estar vacio favor de poner un nombre";
+        if(isNumeric(calificacion) == true && Integer.parseInt(calificacion)>-1 && Integer.parseInt(calificacion)<11){
+            int c = Integer.parseInt(calificacion);
+            puest = puesto.verificaPuesto(nombre);
+            int n = puest.getCalificacion();
+            int califFinal;
+            if(n == 0)
+              califFinal = c;
+            else
+                califFinal = (c+n)/2;
+            puest.setCalificacion(califFinal);
+
+            Persona p = persona.getPersona_correo(user);
+            cali = new Calificar(p, puest, comentario);
+            calificar.insert(cali);
+
+            puesto.update(puest);
+        }
+        else{
+            wrong = "Ocurrio un error al registrar tu calificacion, presiona la flecha de retorno en tu navegador para volver a intentarlo";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
-        } else{
-            if(calificacion.equals("")){
-                wrong = "Debes agregar una calificación.";
-                model.addAttribute("mensaje",wrong);
-                return new ModelAndView("ErrorIH",model);
-            }
-            else{
-                if(isNumeric(calificacion) == true && Integer.parseInt(calificacion)>-1 && Integer.parseInt(calificacion)<11){
-                int c = Integer.parseInt(calificacion);
-                puest = puesto.verificaPuesto(nombre);
-                int n = puest.getCalificacion();
-                int califFinal = (c+n)/2;
-                puest.setCalificacion(califFinal);
-                
-                Persona p = persona.getPersona_correo(user);
-                cali = new Calificar(p, puest, comentario);
-                calificar.insert(cali);
-
-                puesto.update(puest);
-                }else{
-                    wrong = "Ocurrio un error al registrar tu calificacion, presiona la flecha de retorno en tu navegador para volver a intentarlo";
-                    model.addAttribute("mensaje",wrong);
-                    return new ModelAndView("ErrorIH",model);
-                }
-            }
         }
 
         return new ModelAndView("PerfilIH",model);
