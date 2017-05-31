@@ -23,17 +23,19 @@
         <div class="box">
           <h1 class="titles">Puestos:</h1>
 
-        <form action="." oninput="range_control_value.value = range_control.valueAsNumber">
             <h2>
                 <c:forEach var="puesto" items="${puestos}">
-                    <p class="titles">Nombre: </p><div class="text">${puesto.idNombre}<br>
+                    <pre class="titles">Nombre: ${puesto.idNombre}</pre>
                         <%--${puesto.horario}<br>
                         ${puesto.alimentos}<br>--%>
-                    <B>Ubicacion: </B>${puesto.ubicacion}<br>
-                    <br></div>
+                    <pre class="titles">Ubicacion: ${puesto.ubicacion}</pre>
+                    <form method="POST" action="/PrimerProyecto/verComentariosVis">
+                        <input type="HIDDEN" name="comentariosDe" value="${puesto.idNombre}">
+                        <button>Ver Comentarios</button>
+                    </form>
+                    <br>
                 </c:forEach>
             </h2>
-        </form>
         </div>
 
 

@@ -652,6 +652,29 @@ public class Controlador {
 
         return new ModelAndView("VerComentariosIH",model);
     }
+    
+    /**
+     * Metodo que muestra los comentarios a un visitante.
+     * @param request - la solicitud.
+     * @return La lista de comentarios de cierto puesto.
+     */
+    @RequestMapping(value = "/verComentariosVis", method = RequestMethod.POST)
+    public ModelAndView verComentariosVis(ModelMap model, HttpServletRequest request){
+        String nombre = request.getParameter("comentariosDe");
+        String wrong = "";
+        List<Calificar> comentarios = calificar.list_comentarios(nombre);
+
+        if(comentarios == null){
+            wrong = "Error al cargar la información.";
+            model.addAttribute("mensaje",wrong);
+            return new ModelAndView("ErrorIH",model);
+        }
+
+        model.addAttribute("comentarios", comentarios);
+        model.addAttribute("nombre", nombre);
+
+        return new ModelAndView("VerComentariosVisIH",model);
+    }
 
     /**
      * Metodo para eliminar un usuario del sistema.
