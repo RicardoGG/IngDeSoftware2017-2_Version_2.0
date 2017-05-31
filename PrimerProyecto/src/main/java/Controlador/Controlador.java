@@ -692,19 +692,25 @@ public class Controlador {
 
         Usuario us = usuario.verificaUsuario(correo);
         Persona p = persona.usuario_registrado(correo);
+        Calificar c = calificar.buscar_comentario(correo);
 
         String wrong = "";
 
         if (us == null) {
+            System.out.println("aloha");
             wrong = "El usuario no esta en la base de datos, favor de verificar el nombre";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         } else {
             if(p == null){
+                calificar.delete(c);
                 usuario.delete(us);
+                System.out.println("aqui ta");
             }else{
-                persona.delete(p);
+                calificar.delete(c);
                 usuario.delete(us);
+                persona.delete(p);
+                System.out.println("aqui está");
             }
         }
         return new ModelAndView("AdministradorIH", model);
