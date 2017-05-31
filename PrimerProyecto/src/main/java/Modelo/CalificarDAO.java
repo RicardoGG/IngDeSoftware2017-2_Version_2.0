@@ -180,4 +180,33 @@ public class CalificarDAO {
         
         return cal;
     }
+    
+    /**
+     * Metodo para buscar todos los comentarios hechos.
+     * @return Los comentarios.
+     */
+    public List<Calificar> comentarios(){
+        List<Calificar> comentarios = null;
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try{
+            
+            tx = session.beginTransaction();
+            String hql = "from Calificar";
+            Query query = session.createQuery(hql);
+            comentarios = (List<Calificar>)query.list();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        
+        return comentarios;
+    }
 }

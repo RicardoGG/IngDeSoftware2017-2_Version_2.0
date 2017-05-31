@@ -12,17 +12,47 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Comentarios</title>
+        <link rel="stylesheet" type="text/css" href="css/admin.css">
+        <title>JSP Page</title>
     </head>
-    
-    <body>
-        <h1>Comentarios para ${nombre}</h1>
+    <body class="bgimage">
+        <div class="header">
+            <p class="title_page">Modificando puesto</p>
+        </div>
+        <div style="height: 90%;width: 100%; position: relative">
+        <div class="sidemenu">
+                <img class="logo" src="css/logo.png">
+
+                <form method="submit" action="/PrimerProyecto/CrearPuestoIH">
+                    <br>
+                    <button>Crear Puesto</button>
+                    <br>
+                </form>
+
+                <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
+                    <br>
+                    <button>Ver Puestos</button>
+                    <br>
+                </form>
+                
+                <form method="submit" action="/PrimerProyecto/verComentariosAdmin">
+                    <br>
+                    <button>Ver Comentarios</button>
+                    <br>
+                </form>
+
+                <form method ="POST" action="/PrimerProyecto/cerrarSesion">
+                    <br>
+                    <button> Cerrar Sesión</button>
+                    <br>
+                </form>
+        </div>     
+        <div class="content">
+        <div class="titles">
+        <h1>Comentarios</h1>
             <c:forEach var="comentario" items="${comentarios}">
-                    <form method ="POST" action="/PrimerProyecto/cancelar">
-                        <button>Volver a pantalla de Administrador</button>
-                    </form>
-                <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}<br>${comentario.persona.correo}<br></B>dijo:</font></pre>
-                <pre><font size="4" style="font-family: courier;">${comentario.comentario}</font></pre>
+                <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}<br>${comentario.persona.correo}<br>Comento en:</B> ${comentario.puesto.idNombre}</font></pre>
+                <pre><font size="4" style="font-family: courier;"><i>${comentario.comentario}</i></font></pre>
                 
                 <form method="POST" action="/PrimerProyecto/eliminarComentario">
                     <input type="HIDDEN" name="persona" value="${comentario.persona.correo}">
@@ -32,8 +62,9 @@
                 </form>
 
                 <br>
-                <br>
-                <br>
             </c:forEach>
+        </div>
+        </div>
+        </div>
     </body>
 </html>

@@ -32,6 +32,12 @@
                         <button>Ver Puestos</button>
                         <br>
                     </form>
+                    
+                    <form method="submit" action="/PrimerProyecto/verComentariosAdmin">
+                        <br>
+                        <button>Ver Comentarios</button>
+                        <br>
+                    </form>
 
                     <form method ="POST" action="/PrimerProyecto/cerrarSesion">
                         <br>

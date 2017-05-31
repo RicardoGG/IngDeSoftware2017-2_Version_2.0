@@ -527,7 +527,7 @@ public class Controlador {
         
         calificar.delete(comentario);
         
-        List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
+        List<Calificar> comentarios = calificar.comentarios();
         
         model.addAttribute("comentarios", comentarios);
         model.addAttribute("nombre", donde_comento);
@@ -541,11 +541,10 @@ public class Controlador {
      * @param request - la solicitud.
      * @return la pagina de comentarios de un puesto determinado.
      */
-      @RequestMapping(value="/verComentariosAdmin", method = RequestMethod.POST)
+      @RequestMapping(value="/verComentariosAdmin", method = RequestMethod.GET)
     public ModelAndView verComentarioPuestoAdmin(ModelMap model,HttpServletRequest request){
-        String nombre = request.getParameter("comentariosDe");
         String wrong = "";
-        List<Calificar> comentarios = calificar.list_comentarios(nombre);
+        List<Calificar> comentarios = calificar.comentarios();
 
         if(comentarios == null){
             wrong = "Error al cargar la información.";
@@ -554,7 +553,7 @@ public class Controlador {
         }
 
         model.addAttribute("comentarios", comentarios);
-        model.addAttribute("nombre", nombre);
+        
         return new ModelAndView("VerComentariosAdminIH",model);
     }
 
