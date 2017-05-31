@@ -1,6 +1,7 @@
 package Modelo;
 
 import Mapeo.Persona;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -171,5 +172,34 @@ public class PersonaDAO {
             session.close();
         }
         return person;
+    }
+    
+    /**
+     * Metodo para obtener todas las personas registradas.
+     * @return Una lista de Personas.
+     */
+    public List<Persona> personas(){
+        List<Persona> personas = null;
+        
+        Session session = sessionFactory.openSession();
+        Transaction tx = null;
+        
+        try{
+            
+            tx = session.beginTransaction();
+            String hql = " from Persona";
+            Query query = session.createQuery(hql);
+            personas = (List<Persona>)query.list();
+            tx.commit();
+            
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return personas;
     }
 }

@@ -687,7 +687,7 @@ public class Controlador {
      */
     @RequestMapping(value = "/eliminarUsuarioAdministrador1IH", method = RequestMethod.POST)
     public ModelAndView eliminarUsuario(ModelMap model, HttpServletRequest request) {
-        String correo = request.getParameter("usuario");
+        String correo = request.getParameter("correo");
 
         Usuario us = usuario.verificaUsuario(correo);
         Persona p = persona.usuario_registrado(correo);
@@ -696,7 +696,6 @@ public class Controlador {
         String wrong = "";
 
         if (us == null) {
-            System.out.println("aloha");
             wrong = "El usuario no esta en la base de datos, favor de verificar el nombre";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
@@ -704,16 +703,17 @@ public class Controlador {
             if(p == null){
                 calificar.delete(c);
                 usuario.delete(us);
-                System.out.println("aqui ta");
             }else{
                 calificar.delete(c);
                 usuario.delete(us);
                 persona.delete(p);
-                System.out.println("aqui está");
             }
         }
-        return new ModelAndView("AdministradorIH", model);
-
+        
+        List<Persona> usuarios = persona.personas();
+        model.addAttribute("usuarios", usuarios);
+        
+        return new ModelAndView("eliminarUsuarioAdministradorIH", model);
     }
 
     /**
@@ -724,7 +724,18 @@ public class Controlador {
      */
      @RequestMapping(value = "/eliminarUsuarioAdministradorIH", method = RequestMethod.POST)
     public ModelAndView Usuarios(ModelMap model, HttpServletRequest request) {
-         return new ModelAndView("eliminarUsuarioAdministradorIH", model);
+        List<Persona> usuarios = persona.personas();
+        String wrong = "";
+        
+        if (usuarios == null) {
+            wrong = "Error al cargar los datos.";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }
+        
+        model.addAttribute("usuarios", usuarios);
+        
+        return new ModelAndView("eliminarUsuarioAdministradorIH", model);
     }
     
     /**

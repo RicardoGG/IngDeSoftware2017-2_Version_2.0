@@ -37,6 +37,12 @@
                     <br>
                 </form>
                 
+                <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
+                    <br>
+                    <button>Ver Usuarios</button>
+                    <br>
+                </form>
+                
                 <form method="submit" action="/PrimerProyecto/verComentariosAdmin">
                     <br>
                     <button>Ver Comentarios</button>
@@ -47,9 +53,6 @@
                     <br>
                     <button> Cerrar Sesión</button>
                     <br>
-                </form>
-                <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
-                    <button> Eliminar Usuario </button>
                 </form>
         </div>     
         <div class="content">

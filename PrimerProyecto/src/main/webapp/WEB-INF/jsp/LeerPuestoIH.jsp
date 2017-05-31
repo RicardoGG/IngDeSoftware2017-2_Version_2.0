@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/admin.css">
-        <title>Leer Puesto</title>
+        <title>Puestos</title>
     </head>
     <body class="bgimage">
         <div class="header">
@@ -30,6 +30,12 @@
                     <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
                         <br>
                         <button>Ver Puestos</button>
+                        <br>
+                    </form>
+                    
+                    <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
+                        <br>
+                        <button>Ver Usuarios</button>
                         <br>
                     </form>
                     

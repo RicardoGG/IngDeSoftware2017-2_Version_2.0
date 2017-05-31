@@ -31,6 +31,12 @@
                     <button>Ver Puestos</button>
                 </form>
                 
+                <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
+                    <br>
+                    <button>Ver Usuarios</button>
+                    <br>
+                </form>
+                
                 <form method="submit" action="/PrimerProyecto/verComentariosAdmin">
                     <br>
                     <button>Ver Comentarios</button>
