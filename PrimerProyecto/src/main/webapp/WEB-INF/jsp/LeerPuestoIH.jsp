@@ -15,7 +15,7 @@
     </head>
     <body class="bgimage">
         <div class="header">
-            <p class="title_page">Leer puestos</p>
+            <p class="title_page">Puestos</p>
         </div>
         <div style="height: 90%;width: 100%; position: relative">
             <div class="sidemenu">

@@ -17,7 +17,7 @@
     </head>
     <body class="bgimage">
         <div class="header">
-            <p class="title_page">Modificando puesto</p>
+            <p class="title_page">Usuarios</p>
         </div>
         <div style="height: 90%;width: 100%; position: relative">
         <div class="sidemenu">

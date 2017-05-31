@@ -446,8 +446,8 @@ public class Controlador {
      @RequestMapping(value="/calificarPuesto2", method = RequestMethod.POST)
     public ModelAndView calificarPuesto(ModelMap model,HttpServletRequest request){
         String nombre = request.getParameter("puesto");
-        String calificacion = request.getParameter("calificacion");
-        String comentario = request.getParameter("comentario");
+        String calificacion = request.getParameter("Calificacion");
+        String comentario = request.getParameter("Comentario");
         
         String wrong = "";
         List<Puesto> puestos_registrados = puesto.list_puestos();

@@ -14,7 +14,7 @@
     <body>
         <form method="POST" action="/PrimerProyecto/guardarComentario">
             <input name="comentario_nuevo" value="${comentario}">
-            <input type="HIDDEN" name="comentario_viejo" value="${comentariol}">
+            <input type="HIDDEN" name="comentario_viejo" value="${comentario}">
             <input type="HIDDEN" name="persona" value="${email}">
             <input type="HIDDEN" name="puesto" value="${puesto}">
             <button>Aceptar</button>
