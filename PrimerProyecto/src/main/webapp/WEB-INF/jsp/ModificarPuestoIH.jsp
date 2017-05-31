@@ -30,15 +30,7 @@
                 <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
                     <button>Ver Puestos</button>
                 </form>
-
-                <form method="submit" action="/PrimerProyecto/ModificarPuestoIH">
-                    <button>Modificar Puesto</button>
-                </form>
-
-                <form method="POST" action="/PrimerProyecto/EliminarPuestoIH">
-                    <button>Eliminar Puesto</button>
-                </form>
-
+                
                 <form method ="POST" action="/PrimerProyecto/cerrarSesion">
                     <button> Cerrar Sesión</button>
                 </form>
