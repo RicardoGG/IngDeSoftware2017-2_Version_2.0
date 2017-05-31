@@ -18,38 +18,45 @@
             <p class="title_page">Leer puestos</p>
         </div>
         <div style="height: 90%;width: 100%; position: relative">
-        <div class="sidemenu">
-                <img class="logo" src="css/logo.png">
+            <div class="sidemenu">
+                    <img class="logo" src="css/logo.png">
 
-                <form method="submit" action="/PrimerProyecto/CrearPuestoIH">
-                    <button>Crear Puesto</button>
-                </form>
+                    <form method="submit" action="/PrimerProyecto/CrearPuestoIH">
+                        <br>
+                        <button>Crear Puesto</button>
+                        <br>
+                    </form>
 
-                <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
-                    <button>Ver Puestos</button>
-                </form>
+                    <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
+                        <br>
+                        <button>Ver Puestos</button>
+                        <br>
+                    </form>
 
-                <form method="submit" action="/PrimerProyecto/ModificarPuestoIH">
-                    <button>Modificar Puesto</button>
-                </form>
-
-                <form method="POST" action="/PrimerProyecto/EliminarPuestoIH">
-                    <button>Eliminar Puesto</button>
-                </form>
-
-                <form method ="POST" action="/PrimerProyecto/cerrarSesion">
-                    <button> Cerrar Sesión</button>
-                </form>
-        </div>     
-        <div class="content">
-            <div class="titles">
-                <p>A continuacion se muestra la lista de puestos que hay:</p>
-                <c:forEach var="puesto" items="${puestos}">
-                    ${puesto.idNombre}<br>
-                </form>
-                </c:forEach>
+                    <form method ="POST" action="/PrimerProyecto/cerrarSesion">
+                        <br>
+                        <button> Cerrar Sesión</button>
+                        <br>
+                    </form>
+            </div>     
+            <div class="content">
+                <div class="titles">
+                    <pre><h2> Puestos registrados:</h2></pre>
+                    <c:forEach var="puesto" items="${puestos}">
+                    <pre>   ${puesto.idNombre}</pre>
+                        <form method="POST" action="/PrimerProyecto/eliminarPuesto">
+                            <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
+                            <button>Eliminar Puesto</button>
+                        </form>
+                        <form method="POST" action="/PrimerProyecto/editPuesto">
+                            <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
+                            <button>Modificar Puesto</button>
+                        </form>
+                        <br>
+                    </form>
+                    </c:forEach>
+                </div>
             </div>
-        </div>
         </div>
         
     </body>

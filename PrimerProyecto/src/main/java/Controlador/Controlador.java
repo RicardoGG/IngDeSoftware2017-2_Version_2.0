@@ -363,7 +363,11 @@ public class Controlador {
                 puesto.delete(puest);
             }
         }
-        return new ModelAndView("AdministradorIH", model);
+        
+        List<Puesto> puestos_registrados = puesto.list_puestos();
+        model.addAttribute("puestos", puestos_registrados);
+        
+        return new ModelAndView("LeerPuestoIH", model);
 
     }
 

@@ -26,29 +26,24 @@
                 <img class="logo" src="css/logo.png">
 
                 <form method="submit" action="/PrimerProyecto/CrearPuestoIH">
+                    <br>
                     <button>Crear Puesto</button>
+                    <br>
                 </form>
 
                 <form method="submit" action="/PrimerProyecto/LeerPuestoIH">
+                    <br>
                     <button>Ver Puestos</button>
-                </form>
-
-                <form method="submit" action="/PrimerProyecto/ModificarPuestoIH">
-                    <button>Modificar Puesto</button>
-                </form>
-
-                <form method="POST" action="/PrimerProyecto/EliminarPuestoIH">
-                    <button>Eliminar Puesto</button>
+                    <br>
                 </form>
 
                 <form method ="POST" action="/PrimerProyecto/cerrarSesion">
+                    <br>
                     <button> Cerrar Sesión</button>
+                    <br>
                 </form>
                 <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministradorIH">
                     <button> Eliminar Usuario </button>
-                </form>
-                <form method ="POST" action="/PrimerProyecto/verInfoAdmin">
-                    <button> Entrar como usuario </button>
                 </form>
         </div>     
         <div class="content">

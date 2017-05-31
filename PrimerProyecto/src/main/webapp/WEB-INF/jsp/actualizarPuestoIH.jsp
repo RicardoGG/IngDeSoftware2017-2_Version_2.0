@@ -45,10 +45,10 @@
                 <div class="titles">
                     <input type="hidden" name="nombreViejo" value="${nombre}">
                     <h2>Nombre nuevo:  </h2>
-                    <input id="nombre_puesto" name ="nombre" type="text" placeholder = ${nombre}><br>
+                    <input id="nombre_puesto" name ="nombre" type="text" placeholder = "${nombre}"><br>
                     <br>
                     <h2>Ubicacion:  </h2>
-                    <input id="ubicacion_puesto" name ="ubicacion" type="text" placeholder = ${ubicacion} >         
+                    <input id="ubicacion_puesto" name ="ubicacion" type="text" placeholder = "${ubicacion}" >         
                 </div>
            
 
