@@ -54,22 +54,29 @@
                 </form>
         </div>     
         <div class="content">
-        <div class="titles">
-        <h1>Comentarios</h1>
-            <c:forEach var="comentario" items="${comentarios}">
-                <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}<br>${comentario.persona.correo}<br>Comento en:</B> ${comentario.puesto.idNombre}</font></pre>
-                <pre><font size="4" style="font-family: courier;"><i>${comentario.comentario}</i></font></pre>
-                
-                <form method="POST" action="/PrimerProyecto/eliminarComentario">
-                    <input type="HIDDEN" name="persona" value="${comentario.persona.correo}">
-                    <input type="HIDDEN" name="puesto" value="${comentario.puesto.idNombre}">
-                    <input type="HIDDEN" name="comentario" value="${comentario.comentario}">
-                    <button name="delete">Eliminar</button>
-                </form>
+            <div class="titles">
+                <div class="scroll">
+                    <h1>Comentarios</h1>
+                    <c:forEach var="comentario" items="${comentarios}">
+                        <div class="element">
+                            <div class="first_section_2">
+                                <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}<br>${comentario.persona.correo}<br>Comento en:</B> ${comentario.puesto.idNombre}</font></pre>
+                                <pre><font size="4" style="font-family: courier;"><i>${comentario.comentario}</i></font></pre>                                
+                            </div>
+                            <div class="second_section_2">
+                                <form method="POST" action="/PrimerProyecto/eliminarComentario">
+                                    <input type="HIDDEN" name="persona" value="${comentario.persona.correo}">
+                                    <input type="HIDDEN" name="puesto" value="${comentario.puesto.idNombre}">
+                                    <input type="HIDDEN" name="comentario" value="${comentario.comentario}">
+                                    <button name="delete" class="boton2 center" style="bottom:0; margin: 0">Eliminar</button>
+                                </form>                           
+                            </div>
 
-                <br>
-            </c:forEach>
-        </div>
+                            <br>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
         </div>
         </div>
     </body>
