@@ -37,6 +37,7 @@ body,html{
 
 
 
+
 .title_page{
    color: #F4F4F5; 
    font-size: 15pt;
@@ -207,7 +208,42 @@ button{
     background: #428BCA;
 }
 
+
 #button_create_f:hover{
+    background: #CF4647;
+}
+.boton1{
+    width: 75%;
+    text-align: center;
+    padding: 3% 1.5%;
+    top: 15%;
+    left: 12.5%;
+    position: absolute;
+    border-radius: 4px;
+    background: #428BCA;
+    color: white;
+}
+
+.boton1:hover{
+    background-color: #4CAF50;
+}
+
+.boton2{
+    width: 75%;
+    text-align: center;
+    left: 12.5%;
+    padding: 3% 1.5%;
+    bottom: 15%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: absolute;
+    border-radius: 4px;
+    background: #428BCA;
+    color: white;
+}
+
+.boton2:hover{
     background: #CF4647;
 }
 

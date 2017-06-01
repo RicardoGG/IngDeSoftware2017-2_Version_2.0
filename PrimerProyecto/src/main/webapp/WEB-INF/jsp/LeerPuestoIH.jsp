@@ -66,11 +66,11 @@
                             <div class="third_section">
                                 <form method="POST" action="/PrimerProyecto/editPuesto">
                                     <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
-                                    <button>Modificar Puesto</button>
+                                    <button class="boton1">Modificar Puesto</button>
                                 </form>
                                 <form method="POST" action="/PrimerProyecto/eliminarPuesto">
                                     <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
-                                    <button>Eliminar Puesto</button>
+                                    <button class="boton2">Eliminar Puesto</button>
                                 </form>
                             </div>
                         </div>

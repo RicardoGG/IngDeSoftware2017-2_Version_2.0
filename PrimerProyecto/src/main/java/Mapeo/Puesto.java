@@ -72,7 +72,7 @@ public class Puesto implements Serializable {
      * @return La ubicacion.
      */
     public String getUrl() {
-        String s = "https://maps.googleapis.com/maps/api/staticmap?center="+ ubicacion +"&zoom=17&size=450x190&maptype=roadmap&key=AIzaSyC2OSZJg00YFXIfATR7QgXAu0wmA78Q2p0&markers=color:blue%7Clabel:P%7C"+ ubicacion+"&markers=size:tiny";
+        String s = "https://maps.googleapis.com/maps/api/staticmap?center="+ ubicacion +"&zoom=17&size=600x225&maptype=roadmap&key=AIzaSyC2OSZJg00YFXIfATR7QgXAu0wmA78Q2p0&markers=color:blue%7Clabel:P%7C"+ ubicacion+"&markers=size:tiny";
         return s;
     }
     
