@@ -212,6 +212,34 @@ button{
 #button_create_f:hover{
     background: #CF4647;
 }
+
+#button_modify_p1{
+    position: absolute;
+    margin-left: 10%;
+    width: 15%;
+    text-align: center;
+    padding: 1% 1.5%;
+    bottom: 40%;
+    border-radius: 4px;
+    background: #428BCA;
+}
+
+
+#button_modify_p1:hover{
+    background: #4CAF50;
+}
+
+#button_modify_p2{
+    position: absolute;
+    margin-left: 10%;
+    width: 15%;
+    text-align: center;
+    padding: 1% 1.5%;
+    bottom: 25%;
+    border-radius: 4px;
+    background:#CF4647;
+}
+
 .boton1{
     width: 75%;
     text-align: center;
