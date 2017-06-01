@@ -31,7 +31,7 @@
             <h2> ¿Estás seguro de eliminar tu cuenta? </h2>
         
             <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">
-                    <input type="HIDDEN" name="usuario" value="${usuario.correo_us}">
+                    <input type="HIDDEN" name="usuario" value="${usuario}">
                     <button> Eliminar Cuenta </button>
                     <br>
             </form>
