@@ -151,12 +151,12 @@ public class CalificarDAO {
     }
     
     /**
-     * Metodo para buscar un comentario hecho por un usuario dado su email y un puesto.
+     * Metodo para buscar los comentarios hechos por un usuario dado su email.
      * @param email El email del usuario.
      * @return El comentario.
      */
-    public Calificar buscar_comentario(String email){
-        Calificar cal = null;
+    public List<Calificar> buscar_comentario(String email){
+        List<Calificar> cal = null;
         Session session = sessionFactory.openSession();
         Transaction tx = null;
         
@@ -166,7 +166,7 @@ public class CalificarDAO {
             String hql = "from Calificar c where c.persona.correo = :correo";
             Query query = session.createQuery(hql);
             query.setParameter("correo", email);
-            cal = (Calificar)query.uniqueResult();
+            cal = (List<Calificar>)query.list();
             tx.commit();
             
         } catch (Exception e) {
@@ -210,6 +210,12 @@ public class CalificarDAO {
         return comentarios;
     }
     
+    /**
+     * Metodo para buscar un comentario hecho por un usuario dado su email y un puesto.
+     * @param email El email del usuario.
+     * @param puesto El nombre del puesto.
+     * @return El comentario.
+     */
     public Calificar buscar_comentario2(String email, String puesto){
         Calificar cal = null;
         Session session = sessionFactory.openSession();

@@ -180,13 +180,13 @@ public class Controlador {
         String wrong = "";
         Usuario u = usuario.getUser(email, pas);
         if (u == null) {
-            wrong = "usuario no valido";
+            wrong = "Usuario no valido";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         }
         Persona p = persona.getPersona(u.getCorreo_us(), pas);
         if (p == null) {
-            wrong = "correo invalido, favor de verificarlo";
+            wrong = "Correo invalido, favor de verificarlo";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         } else if (pas.equals(p.getContrasenia())) {
@@ -691,7 +691,7 @@ public class Controlador {
 
         Usuario us = usuario.verificaUsuario(correo);
         Persona p = persona.usuario_registrado(correo);
-        Calificar c = calificar.buscar_comentario(correo);
+        List<Calificar> c = calificar.buscar_comentario(correo);
 
         String wrong = "";
 
@@ -701,10 +701,12 @@ public class Controlador {
             return new ModelAndView("ErrorIH", model);
         } else {
             if(p == null){
-                calificar.delete(c);
+                for(Calificar comentario: c)
+                    calificar.delete(comentario);
                 usuario.delete(us);
             }else{
-                calificar.delete(c);
+                for(Calificar comentario: c)
+                    calificar.delete(comentario);
                 usuario.delete(us);
                 persona.delete(p);
             }
