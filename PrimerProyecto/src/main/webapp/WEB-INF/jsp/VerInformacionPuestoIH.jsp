@@ -21,21 +21,28 @@
     </head>
     <body class="bgimage">
         <div class="box">
-          <h1 class="titles">Puestos:</h1>
-
-            <h2>
-                <c:forEach var="puesto" items="${puestos}">
-                    <pre class="titles">Nombre: ${puesto.idNombre}</pre>
-                        <%--${puesto.horario}<br>
-                        ${puesto.alimentos}<br>--%>
-                    <pre class="titles">Ubicacion: ${puesto.ubicacion}</pre>
-                    <form method="POST" action="/PrimerProyecto/verComentariosVis">
-                        <input type="HIDDEN" name="comentariosDe" value="${puesto.idNombre}">
-                        <button>Ver Comentarios</button>
-                    </form>
-                    <br>
-                </c:forEach>
-            </h2>
+            <div class="scroll">
+                <h1 class="titles" style="text-align: center">Puestos:</h1>
+                      <c:forEach var="puesto" items="${puestos}">
+                          <div class="element"> 
+                                <br>
+                                <pre class="titles">Nombre: ${puesto.idNombre}</pre>
+                                    <%--${puesto.horario}<br>
+                                    ${puesto.alimentos}<br>--%>
+                                <br>
+                                <pre class="titles">Ubicacion: ${puesto.ubicacion}</pre>
+                                <br>
+                                <form method="POST" action="/PrimerProyecto/verComentariosVis">
+                                    <input type="HIDDEN"  name="comentariosDe" value="${puesto.idNombre}">
+                                    <button class="boton">
+                                        Ver Comentarios
+                                        <image src="css/comments.png" class="image3"/>
+                                    </button>
+                                </form>
+                                <br>
+                            </div>
+                      </c:forEach>                
+            </div>
         </div>
 
 
@@ -50,7 +57,7 @@
                 map = new google.maps.Map(document.getElementById('map'), {
                     center: {lat: 19.323909, lng: -99.179915},
                     zoom: 19,
-                    mapTypeId: 'hybrid',
+                    mapTypeId: 'roadmap',
                     heading: 270,
                     tilt: 45,
                     streetViewControl: false,

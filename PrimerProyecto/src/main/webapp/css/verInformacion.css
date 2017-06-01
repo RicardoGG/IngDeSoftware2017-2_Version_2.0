@@ -11,13 +11,11 @@ and open the template in the editor.
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 2.5%;
+    left:0;
     background-color: rgba(49,54,76,0.95);
-    width: 27.5%;
-    height: 90%;
-    padding: 3% ;
-    border: 5px solid #F4F4F5;
-    border-radius: 20px;
+    width: 42%;
+    height: 100%;
+    border: .5px solid #F4F4F5;
     margin-top: auto;
     margin-bottom: auto;
 }
@@ -31,7 +29,7 @@ and open the template in the editor.
 
 .map {
     height: 100%;
-    width: 60%;
+    width: 58%;
     position:absolute!important;
     top: 0;
     margin: 0; 
@@ -41,8 +39,7 @@ and open the template in the editor.
 
 .titles{
    color: #F4F4F5; 
-   font-size: 15pt;
-   font-weight: bold;
+   font-size: 13pt;
    font-family: verdana;
    padding: 0;
    margin: 0;
@@ -55,4 +52,56 @@ and open the template in the editor.
    margin: 0;
    font-family: verdana;
    text-align: left;
+}
+.element{
+    width: 100%;
+    position: relative;
+    height: 140px;
+    border-color: white;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.boton{
+    width: 60%;
+    text-align: center;
+    left: 20%;
+    padding: 1% 1.5%;
+    bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    background: lightgray;
+    color: #31364C;
+}
+
+.boton:hover{
+        background-color: #4CAF50;
+
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    font-size: 15pt;
+    font-family: verdana;
+    padding-left: 4%;
+    color: #3333cc;
+    font-weight: bold;
+    padding-bottom: 1%; 
+}
+
+
+.image3{
+    width: 12.5%;
+    height: auto;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    bottom: 0;
 }

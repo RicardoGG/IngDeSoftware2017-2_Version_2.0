@@ -19,6 +19,13 @@ and open the template in the editor.
   color: #BFCAC0;
 }
 
+.scroll{
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    position: relative;
+}
+
 .bgimage{
     background-image: url("foto.jpg");
 
