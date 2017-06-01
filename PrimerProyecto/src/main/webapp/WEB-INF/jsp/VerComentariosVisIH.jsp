@@ -12,15 +12,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/general_style.css">
+        <link rel="stylesheet" type="text/css" href="css/verPuestoDetalle.css">
         <title>Comentarios</title>
     </head>
     
-    <body>
-        <h1>Comentarios para ${nombre}</h1>
+    <body class="bgimage1">
+        <div class="left">
+        </div>
+        <div class="middle">
+            <h1>Comentarios para ${nombre}</h1>
             <c:forEach var="comentario" items="${comentarios}">
                 <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>  dijo:</font></pre>
                 <pre><font size="4" style="font-family: courier;">${comentario.comentario}</font></pre>
                 <br>
-            </c:forEach>
+            </c:forEach>            
+        </div>
+        <div class="right">
+        </div>
+        </div>
     </body>
 </html>

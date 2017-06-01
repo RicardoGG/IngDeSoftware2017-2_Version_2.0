@@ -28,5 +28,7 @@ and open the template in the editor.
 
 .bgimage{
     background-image: url("foto.jpg");
-
+}
+.bgimage1{
+    background-image: url("comedor.jpg");
 }
