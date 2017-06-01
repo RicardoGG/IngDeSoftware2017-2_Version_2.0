@@ -404,8 +404,18 @@ public class Controlador {
     @RequestMapping(value="/calificacionPuesto", method = RequestMethod.POST)
     public ModelAndView calificarPuestoP(ModelMap model,HttpServletRequest request){
         String nombre_puesto = request.getParameter("puesto");
-        model.addAttribute("puesto", nombre_puesto);
-        return new ModelAndView("CalificarPuestoIH",model);
+        String wrong = "";
+        Calificar ya_comento_aqui = calificar.buscar_comentario2(user, nombre_puesto);
+        
+        if(ya_comento_aqui == null){
+            model.addAttribute("puesto", nombre_puesto);
+            return new ModelAndView("CalificarPuestoIH",model);
+        }
+        else{
+            wrong = "Ya calificaste este puesto. No puedes calificar mas de una vez un mismo puesto.";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }
     }
 
     /**
