@@ -706,7 +706,7 @@ public class Controlador {
         String wrong = "";
 
         if (us == null) {
-            wrong = "El usuario no esta en la base de datos, favor de verificar el nombre";
+            wrong = "El usuario no esta en la base de datos, favor de verificar el correo...";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         } else {

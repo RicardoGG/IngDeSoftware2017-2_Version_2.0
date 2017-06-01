@@ -26,18 +26,23 @@
                 <form method="submit" action="/PrimerProyecto/EliminarUsuarioIH">
                     <button> Eliminar Cuenta </button>
                 </form>
-         <body>
          <div class="content">
-            <h2> ¿Estás seguro de eliminar tu cuenta? </h2>
-        
-            <form method ="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">
-                    <input type="HIDDEN" name="usuario" value="${usuario}">
-                    <button> Eliminar Cuenta </button>
-                    <br>
-            </form>
-            <form method="POST" action="/PrimerProyecto/cancelar2">
-                <button class="login_button"style="color: white;">Cancelar</button>
-            </form>
+            <div class="scroll">    
+                <div class="titles">
+                        <div class="element">
+                            <div class="first_section_2">
+                                <pre>   ${usuario.nombre} ${usuario.apPaterno} ${usuario.apMaterno}</pre> 
+                                <pre>   ${usuario.correo}</pre>                                
+                            </div>
+                            <div class="second_section_2">
+                                <form method="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">
+                                    <input type="HIDDEN" name="correo" value="${usuario.correo}">
+                                    <button class="boton2 center" style="bottom:0; margin: 0" > Eliminar Cuenta </button>
+                                </form>                             
+                            </div>
+                        </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>
