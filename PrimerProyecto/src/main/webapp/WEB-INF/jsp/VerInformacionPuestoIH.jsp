@@ -34,6 +34,7 @@
                                 <br>
                                 <form method="POST" action="/PrimerProyecto/verComentariosVis">
                                     <input type="HIDDEN"  name="comentariosDe" value="${puesto.idNombre}">
+                                    <input type="HIDDEN"  name="mapa" value="${puesto.getUrl()}">
                                     <button class="boton">
                                         Ver Comentarios
                                         <image src="css/comments.png" class="image3"/>

@@ -14,18 +14,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="css/general_style.css">
         <link rel="stylesheet" type="text/css" href="css/verPuestoDetalle.css">
+        <link rel="stylesheet" type="text/css" href="css/admin.css">
         <title>Comentarios</title>
     </head>
     
-    <body class="bgimage1">
+    <body style="height: 100%;" >
         <div class="left">
         </div>
-        <div class="middle">
-            <h1>Comentarios para ${nombre}</h1>
+        <div class="middle bgimage1">
+            <div class="element" style="background-color: rgba(49,54,76,0.95)">
+                <div class="first_section_2">
+                    <h1 class="center" style="color:white">Comentarios para ${nombre}</h1>
+                </div>
+                <div class="second_section_2">
+                    <img style="height: 100%; width: 100%;object-fit: contain" src="${mapa}">
+                </div>
+            </div>
             <c:forEach var="comentario" items="${comentarios}">
-                <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>  dijo:</font></pre>
-                <pre><font size="4" style="font-family: courier;">${comentario.comentario}</font></pre>
-                <br>
+                <div class="element">
+                    <div class="first_section_3" style="background-color:whitesmoke">
+                        <pre><font size="4" style="font-family: verdana;"><B>${comentario.persona.nombre} ${comentario.persona.apPaterno} ${comentario.persona.apMaterno}</B>  dijo:</font></pre>
+                        <pre><font size="4" style="font-family: courier;">${comentario.comentario}</font></pre>
+                    </div >
+                    <div class="second_section_3">
+                        <img src="css/BlackCat.png" style="height: 100%; width: 100%;object-fit: contain"/>
+                    </div>
+                    <br>    
+                </div>
+                
             </c:forEach>            
         </div>
         <div class="right">

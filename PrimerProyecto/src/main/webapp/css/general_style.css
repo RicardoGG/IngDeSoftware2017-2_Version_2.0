@@ -30,5 +30,8 @@ and open the template in the editor.
     background-image: url("foto.jpg");
 }
 .bgimage1{
+    
     background-image: url("comedor.jpg");
+       background-size: cover;
+
 }

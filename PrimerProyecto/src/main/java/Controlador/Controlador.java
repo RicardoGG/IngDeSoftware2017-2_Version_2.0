@@ -674,6 +674,8 @@ public class Controlador {
     @RequestMapping(value = "/verComentariosVis", method = RequestMethod.POST)
     public ModelAndView verComentariosVis(ModelMap model, HttpServletRequest request){
         String nombre = request.getParameter("comentariosDe");
+        String mapa = request.getParameter("mapa");
+        System.out.println(mapa);
         String wrong = "";
         List<Calificar> comentarios = calificar.list_comentarios(nombre);
 
@@ -685,6 +687,7 @@ public class Controlador {
 
         model.addAttribute("comentarios", comentarios);
         model.addAttribute("nombre", nombre);
+        model.addAttribute("mapa",mapa);
 
         return new ModelAndView("VerComentariosVisIH",model);
     }
