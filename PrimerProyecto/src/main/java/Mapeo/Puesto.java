@@ -67,6 +67,15 @@ public class Puesto implements Serializable {
         return ubicacion;
     }
     
+     /**
+     * Metodo para obtener la url de la imagen de la ubicación
+     * @return La ubicacion.
+     */
+    public String getUrl() {
+        String s = "https://maps.googleapis.com/maps/api/staticmap?center="+ ubicacion +"&zoom=17&size=450x190&maptype=roadmap&key=AIzaSyC2OSZJg00YFXIfATR7QgXAu0wmA78Q2p0&markers=color:blue%7Clabel:P%7C"+ ubicacion+"&markers=size:tiny";
+        return s;
+    }
+    
     /**
      * Metodo para asignar un valor a ubicacion.
      * @param ubicacion La ubicacion a asignar.

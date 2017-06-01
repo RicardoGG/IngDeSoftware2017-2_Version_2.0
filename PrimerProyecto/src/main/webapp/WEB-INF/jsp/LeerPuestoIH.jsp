@@ -52,23 +52,33 @@
                     </form>
             </div>     
             <div class="content">
+                <div class="scroll">
                 <div class="titles">
-                    <pre><h2> Puestos registrados:</h2></pre>
+                    <pre><h2 style="text-align:center;"> Puestos registrados</h2></pre>
                     <c:forEach var="puesto" items="${puestos}">
-                    <pre>   ${puesto.idNombre}</pre>
-                        <form method="POST" action="/PrimerProyecto/eliminarPuesto">
-                            <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
-                            <button>Eliminar Puesto</button>
-                        </form>
-                        <form method="POST" action="/PrimerProyecto/editPuesto">
-                            <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
-                            <button>Modificar Puesto</button>
-                        </form>
-                        <br>
-                    </form>
+                        <div class="element">
+                            <div class="first_section">
+                                <p class="center">${puesto.idNombre}</p>
+                            </div>
+                            <div class="second_section">
+                                <img style="height: 100%; width: 100%;object-fit: contain" src="${puesto.getUrl()}">
+                            </div>
+                            <div class="third_section">
+                                <form method="POST" action="/PrimerProyecto/editPuesto">
+                                    <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
+                                    <button>Modificar Puesto</button>
+                                </form>
+                                <form method="POST" action="/PrimerProyecto/eliminarPuesto">
+                                    <input type="HIDDEN" name="puesto" value="${puesto.idNombre}">
+                                    <button>Eliminar Puesto</button>
+                                </form>
+                            </div>
+                        </div>
                     </c:forEach>
                 </div>
+                </div>
             </div>
+             
         </div>
         
     </body>
