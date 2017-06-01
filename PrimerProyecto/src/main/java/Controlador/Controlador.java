@@ -486,7 +486,7 @@ public class Controlador {
             puesto.update(puest);
         }
         else{
-            wrong = "Ocurrio un error al registrar tu calificacion, presiona la flecha de retorno en tu navegador para volver a intentarlo";
+            wrong = "Calificación fuera de límite o valor no válido.";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
@@ -806,8 +806,8 @@ public class Controlador {
     public ModelAndView guardarComentario(ModelMap model, HttpServletRequest request) {
         String quien_comento = request.getParameter("persona");
         String donde_comento = request.getParameter("puesto");
-        String nuevo_comentario = request.getParameter("comentario_nuevo");
-        Calificar comentario = calificar.buscar_comentario(quien_comento);
+        String nuevo_comentario = request.getParameter("comentarioNuevo");
+        Calificar comentario = calificar.buscar_comentario2(quien_comento, donde_comento);
         comentario.setComentario(nuevo_comentario);
         calificar.update(comentario);
         List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
