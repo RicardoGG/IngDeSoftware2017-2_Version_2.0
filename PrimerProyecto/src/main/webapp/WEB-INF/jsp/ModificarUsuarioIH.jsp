@@ -26,20 +26,23 @@
                 <form method="submit" action="/PrimerProyecto/actualizarUsuario">
                     <button> Eliminar Cuenta </button>
                 </form>
-                <input type="hidden" name="correoViejo" value="${correo_us}">
-                <div id="form_create_1"> Nombre nuevo<br>
-                <input id="name" name ="nombre" type="text" placeholder = "${nombre}"><br></div>
-                <div id="form_create_2" > Apellido Paterno <br> 
-                <input id="apPaterno" name ="paterno" type="text" placeholder = "${apPaterno}"><br></div>
-                <div id="form_create_3"> Apellido Materno<br>
-                <input id="apMaterno" name ="materno" type="text" placeholder = "${apMaterno}"><br></div>
-                <div id="form_create_4" > Correo <br> 
-                <input id="correo" name ="email" type="text" placeholder = "${correo}"><br></div>
-                <div id="form_create_5" > Contraseña <br> 
-                <input id="contrasena" name ="password" type="text" placeholder = "${Contrasena}"><br></div>
+                <form method="POST" action="/PrimerProyecto/actualizarUsuario">
+                    <div class="titles_create">
+                        <input type="hidden" name="correoViejo" value="${correo_us}">
+                        <div id="form_create_1"> Nombre nuevo<br>
+                        <input id="name" name ="nombre" type="text" placeholder = "${nombre}"><br></div>
+                        <div id="form_create_2" > Apellido Paterno <br> 
+                        <input id="apPaterno" name ="paterno" type="text" placeholder = "${apPaterno}"><br></div>
+                        <div id="form_create_3"> Apellido Materno<br>
+                        <input id="apMaterno" name ="materno" type="text" placeholder = "${apMaterno}"><br></div>
+                        <div id="form_create_4" > Correo <br> 
+                        <input id="correo" name ="email" type="text" placeholder = "${correo}"><br></div>
+                        <div id="form_create_5" > Contraseña <br> 
+                        <input id="contrasena" name ="password" type="text" placeholder = "${Contrasena}"><br></div>
+                    </div>
+                    <button id="button_modify_p1" style="color: white;">Modificar</button>
+                </form>
         </div>
-            <button id="button_modify_p1" style="color: white;">Modificar</button>
-        
             <form method="POST" action="/PrimerProyecto/AjustesIH">
                 <button id="button_modify_p2"style="color: white;">Cancelar</button>
             </form>
