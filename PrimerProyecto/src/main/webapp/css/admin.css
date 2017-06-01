@@ -54,6 +54,11 @@ body,html{
    font-weight: bold;
 }
 
+.titles_create{
+   color: #FFFFFF;
+   font-size: 13pt;
+}
+
 button{
     background-color: transparent;
     border: none;
@@ -112,19 +117,45 @@ button{
 #form_create_1{
     position: absolute;
     top: 15%;
-    margin-left: 10%;
+    margin-left: 5%;
+}
+
+#name{
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 #form_create_2{
     position: absolute;
-    margin-left: 10%;
+    margin-left: 5%;
     top: 30%;
+}
+
+#ubicacion{
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
 #button_create_f{
     position: absolute;
     margin-left: 10%;
-    top: 50%;
+    width: 15%;
+    text-align: center;
+    padding: 1% 1.5%;
+    top: 75%;
+    background: #428BCA;
+}
+
+#button_create_f:hover{
+    background: #CF4647;
 }
 
 .map{
