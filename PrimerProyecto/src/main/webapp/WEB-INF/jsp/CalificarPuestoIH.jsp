@@ -18,7 +18,7 @@
             <h3>${puesto}</h3>
             <input type="HIDDEN" name="puesto" value="${puesto}">
             <br>
-            Calificacion: <br> <input id="calificacion" name="Calificacion" type="text" placeholder="calificacion" /><br>
+            Calificacion: <br> <input id="calificacion" name="Calificacion" type="text" placeholder="Da una calificacion" /><br>
             <br>
             <br>
             Comentario: <br> <input id="comentario" name="Comentario" type="text" placeholder="Escribe un comentario"/>

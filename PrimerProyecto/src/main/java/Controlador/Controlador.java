@@ -180,13 +180,13 @@ public class Controlador {
         String wrong = "";
         Usuario u = usuario.getUser(email, pas);
         if (u == null) {
-            wrong = "usuario no valido";
+            wrong = "Usuario no valido";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         }
         Persona p = persona.getPersona(u.getCorreo_us(), pas);
         if (p == null) {
-            wrong = "correo invalido, favor de verificarlo";
+            wrong = "Correo invalido, favor de verificarlo";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         } else if (pas.equals(p.getContrasenia())) {
@@ -486,7 +486,7 @@ public class Controlador {
             puesto.update(puest);
         }
         else{
-            wrong = "Ocurrio un error al registrar tu calificacion, presiona la flecha de retorno en tu navegador para volver a intentarlo";
+            wrong = "Calificación fuera de límite o valor no válido.";
             model.addAttribute("mensaje",wrong);
             return new ModelAndView("ErrorIH",model);
         }
@@ -691,7 +691,7 @@ public class Controlador {
 
         Usuario us = usuario.verificaUsuario(correo);
         Persona p = persona.usuario_registrado(correo);
-        Calificar c = calificar.buscar_comentario(correo);
+        List<Calificar> c = calificar.buscar_comentario(correo);
 
         String wrong = "";
 
@@ -701,10 +701,12 @@ public class Controlador {
             return new ModelAndView("ErrorIH", model);
         } else {
             if(p == null){
-                calificar.delete(c);
+                for(Calificar comentario: c)
+                    calificar.delete(comentario);
                 usuario.delete(us);
             }else{
-                calificar.delete(c);
+                for(Calificar comentario: c)
+                    calificar.delete(comentario);
                 usuario.delete(us);
                 persona.delete(p);
             }
@@ -806,8 +808,8 @@ public class Controlador {
     public ModelAndView guardarComentario(ModelMap model, HttpServletRequest request) {
         String quien_comento = request.getParameter("persona");
         String donde_comento = request.getParameter("puesto");
-        String nuevo_comentario = request.getParameter("comentario_nuevo");
-        Calificar comentario = calificar.buscar_comentario(quien_comento);
+        String nuevo_comentario = request.getParameter("comentarioNuevo");
+        Calificar comentario = calificar.buscar_comentario2(quien_comento, donde_comento);
         comentario.setComentario(nuevo_comentario);
         calificar.update(comentario);
         List<Calificar> comentarios = calificar.list_comentarios(donde_comento);
