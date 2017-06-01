@@ -815,4 +815,24 @@ public class Controlador {
         model.addAttribute("nombre", donde_comento);
         return new ModelAndView("VerComentariosIH", model);
     }
+    
+   @RequestMapping(value = "/AjustesIH", method = RequestMethod.POST)
+   public ModelAndView AjustesIH(ModelMap model, HttpServletRequest request){
+       return new ModelAndView ("AjustesIH",model);
+   }
+   
+   @RequestMapping(value = "/ModificarUsuarioIH", method = RequestMethod.POST)
+   public ModelAndView ModificarUsuarioIH(ModelMap model, HttpServletRequest request){
+       return new ModelAndView ("ModificarUsuarioIH",model);
+   }
+   
+   @RequestMapping(value = "/EliminarUsuarioIH", method = RequestMethod.POST)
+   public ModelAndView EliminarUsuarioIH(ModelMap model, HttpServletRequest request){
+       return new ModelAndView ("EliminarUsuarioIH",model);
+   }
+   
+   @RequestMapping(value = "/PerfilIH", method = RequestMethod.POST)
+   public ModelAndView PerfilIH(ModelMap model, HttpServletRequest request){
+       return new ModelAndView ("PerfilIH",model);
+   }
 }
