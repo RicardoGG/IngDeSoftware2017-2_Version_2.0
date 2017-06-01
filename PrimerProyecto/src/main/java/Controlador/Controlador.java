@@ -709,7 +709,7 @@ public class Controlador {
         String wrong = "";
 
         if (us == null) {
-            wrong = "El usuario no esta en la base de datos, favor de verificar el nombre";
+            wrong = "El usuario no esta en la base de datos, favor de verificar el correo...";
             model.addAttribute("mensaje", wrong);
             return new ModelAndView("ErrorIH", model);
         } else {
@@ -850,4 +850,30 @@ public class Controlador {
    public ModelAndView PerfilIH(ModelMap model, HttpServletRequest request){
        return new ModelAndView ("PerfilIH",model);
    }
+   
+   @RequestMapping(value = "/actualizarUsuario", method = RequestMethod.POST)
+    public ModelAndView actualizarUsuario(ModelMap model, HttpServletRequest request) {
+        String correoViejo = request.getParameter("correoViejo");
+        String nombre = request.getParameter("nombre");
+        String apPaterno = request.getParameter("paterno");
+        String apMaterno = request.getParameter("materno");
+        String correo = request.getParameter("email");
+        String pass = request.getParameter("password");
+
+        Usuario us = usuario.verificaUsuario(correoViejo);
+        Persona p = persona.usuario_registrado(correoViejo);
+        String wrong = "";
+        
+        try{
+           usuario.update(us);
+           persona.update(p);
+            
+        }catch(Exception e){
+            wrong = "Hubo un error, intentalo mas tarde porfavor...";
+            model.addAttribute("mensaje", wrong);
+            return new ModelAndView("ErrorIH", model);
+        }
+        
+        return new ModelAndView("AjustesIH", model);
+    }
 }
