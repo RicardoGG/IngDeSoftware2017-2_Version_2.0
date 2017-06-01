@@ -121,7 +121,7 @@ button{
 }
 
 #name{
-    padding: 12px 20px;
+    padding: 9px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -136,7 +136,7 @@ button{
 }
 
 #ubicacion{
-    padding: 12px 20px;
+    padding: 9px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -151,6 +151,7 @@ button{
     text-align: center;
     padding: 1% 1.5%;
     top: 75%;
+    border-radius: 4px;
     background: #428BCA;
 }
 
