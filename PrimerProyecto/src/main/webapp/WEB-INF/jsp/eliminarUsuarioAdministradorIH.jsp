@@ -54,16 +54,24 @@
                 </form>
         </div>     
         <div class="content">
-        <div class="titles">
-        <c:forEach var="usuario" items="${usuarios}">
-            <pre>   ${usuario.nombre} ${usuario.apPaterno} ${usuario.apMaterno}</pre> 
-            <pre>   ${usuario.correo}</pre>
-            <form method="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">
-                <input type="HIDDEN" name="correo" value="${usuario.correo}">
-                <button>Eliminar Usuario</button>
-            </form>
-        </c:forEach>
-        </div>
+            <div class="scroll">    
+                <div class="titles">
+                    <c:forEach var="usuario" items="${usuarios}">
+                        <div class="element">
+                            <div class="first_section_2">
+                                <pre>   ${usuario.nombre} ${usuario.apPaterno} ${usuario.apMaterno}</pre> 
+                                <pre>   ${usuario.correo}</pre>                                
+                            </div>
+                            <div class="second_section_2">
+                                <form method="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">
+                                    <input type="HIDDEN" name="correo" value="${usuario.correo}">
+                                    <button class="boton2 center" style="bottom:0; margin: 0" >Eliminar Usuario</button>
+                                </form>                             
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
         </div>
         </div
     </body>
