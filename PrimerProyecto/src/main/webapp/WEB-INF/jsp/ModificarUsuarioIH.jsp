@@ -1,7 +1,7 @@
 <%-- 
     Document   : ModificarUsuarioIH
     Created on : 31/05/2017, 07:35:48 PM
-    Author     : jchav
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

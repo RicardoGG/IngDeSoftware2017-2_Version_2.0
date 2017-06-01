@@ -1,7 +1,7 @@
 <%-- 
     Document   : EliminarUsuarioIH
     Created on : 31/05/2017, 07:36:00 PM
-    Author     : jchav
+    Author     : Manuel
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
