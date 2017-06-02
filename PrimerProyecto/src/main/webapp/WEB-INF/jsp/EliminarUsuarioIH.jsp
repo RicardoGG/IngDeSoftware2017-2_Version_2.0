@@ -19,20 +19,14 @@
         <div class="sidemenu">
                 <img class="logo" src="css/logo.png">
 
-                <form method="submit" action="/PrimerProyecto/ModificarUsuarioIH">
-                    <button> Modificar Datos del Usuario </button>
-                </form>
-
-                <form method="submit" action="/PrimerProyecto/EliminarUsuarioIH">
-                    <button> Eliminar Cuenta </button>
-                </form>
+         
          <div class="content">
             <div class="scroll">    
                 <div class="titles">
                         <div class="element">
-                            <div class="first_section_2">
-                                <pre>   ${usuario.nombre} ${usuario.apPaterno} ${usuario.apMaterno}</pre> 
-                                <pre>   ${usuario.correo}</pre>                                
+                            <div class="first_section_2" >
+                                <pre style="color:black">   ${usuario.nombre} ${usuario.apPaterno} ${usuario.apMaterno}</pre> 
+                                <pre style="color:black">   ${usuario.correo}</pre>                                
                             </div>
                             <div class="second_section_2">
                                 <form method="POST" action="/PrimerProyecto/eliminarUsuarioAdministrador1IH">

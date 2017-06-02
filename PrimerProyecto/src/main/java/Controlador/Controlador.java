@@ -529,7 +529,7 @@ public class Controlador {
         String quien_comento = request.getParameter("persona");
         String donde_comento = request.getParameter("puesto");
         String que_comento = request.getParameter("comentario");
-
+                
         Persona quien = persona.getPersona_correo(quien_comento);
         Puesto lugar = puesto.verificaPuesto(donde_comento);
         

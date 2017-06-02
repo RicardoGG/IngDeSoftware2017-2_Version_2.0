@@ -77,6 +77,22 @@ and open the template in the editor.
     color: #31364C;
 }
 
+
+.boton_l{
+    width: 60%;
+    text-align: center;
+    left: 20%;
+    padding: 1% 1.5%;
+    bottom: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: absolute;
+    border-radius: 2px;
+    background: lightgray!important;
+    color: #31364C!important;
+}
+
 .boton:hover{
         background-color: #4CAF50;
 

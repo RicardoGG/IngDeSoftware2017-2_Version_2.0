@@ -19,11 +19,11 @@
         <div class="sidemenu">
                 <img class="logo" src="css/logo.png">
 
-                <form method="submit" action="/PrimerProyecto/ModificarUsuarioIH">
+                <form method="POST" action="/PrimerProyecto/ModificarUsuarioIH">
                     <button> Modificar Datos del Usuario </button>
                 </form>
 
-                <form method="submit" action="/PrimerProyecto/EliminarUsuarioIH">
+                <form method="POST" action="/PrimerProyecto/EliminarUsuarioIH">
                     <button> Eliminar Cuenta </button>
                 </form>
                 <form method="submit" action="/PrimerProyecto/PerfilIH">
