@@ -32,6 +32,8 @@
                                 <br>
                                 <pre class="titles">Ubicacion: ${puesto.ubicacion}</pre>
                                 <br>
+                                <pre class="titles">Calificacion: ${puesto.calificacion}</pre>
+                                <br>
                                 <form method="POST" action="/PrimerProyecto/verComentariosVis">
                                     <input type="HIDDEN"  name="comentariosDe" value="${puesto.idNombre}">
                                     <input type="HIDDEN"  name="mapa" value="${puesto.getUrl()}">

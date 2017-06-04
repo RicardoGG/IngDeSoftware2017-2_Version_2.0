@@ -100,5 +100,15 @@ public class Puesto implements Serializable {
         this.calificacion = calificacion;
     }
     
+    public String getLat(String ubicacion){
+        String [] u = ubicacion.split(",");
+        String lat = u[0];
+        return lat;
+    }
     
+    public String getLon(String ubicacion){
+        String [] u = ubicacion.split(",");
+        String lon = u[1];
+        return lon;
+    }
 }
